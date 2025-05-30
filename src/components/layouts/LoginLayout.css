@@ -1,0 +1,14 @@
+.dw-footer-container {
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+  background: #F1F1F1;
+  padding-top: 20px;
+}
+
+.dw-layout-body {
+  background-image: url("/static/diaowen/images/style-model/login_bg/1.jpg");
+  -moz-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+} 

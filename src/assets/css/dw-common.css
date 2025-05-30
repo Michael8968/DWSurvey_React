@@ -1,0 +1,164 @@
+:root {
+  --dw-primary-theme-color: #064b91;
+  --dw-primary-bg-color: #064b91;
+  --dw-primary-bg-color-active: #033e75;
+  --dw-primary-bg-color-hover: #0662c0;
+  --dw-primary-text-color-active: #0b72dc;
+  --dw-primary-button-theme-color: #0b72dc;
+  --dw-primary-button-toolbar-theme-color: #0b63bd;
+  --dw-primary-button-bg-color-6: #b5d8fc;
+}
+/**
+ 在DW中定义的全局样式
+ */
+.dw-display-flex{
+  display: flex;
+  align-items: center;
+}
+.dw-display-flex-left{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.dw-display-flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dw-display-flex-right{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.dw-flex-item-auto{
+  flex: auto;
+}
+
+.dw-flex-start{
+  display: flex;
+  align-items: flex-start;
+}
+.dw-flex-item-auto{
+  flex: auto;
+}
+
+.dw-margin-bottom-10{
+  margin-bottom: 10px;
+}
+.dw-margin-left-right-10{
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.dw-margin-right-5{
+  margin-right: 5px;
+}
+.dw-margin-right-10{
+  margin-right: 10px;
+}
+.dw-margin-right-20{
+  margin-right: 20px;
+}
+.dw-padding-top-2{
+  padding-top: 2px;
+}
+.dw-padding-top-5{
+  padding-top: 5px;
+}
+.dw-padding-top-10{
+  padding-top: 10px;
+}
+.dw-padding-bottom-10{
+  padding-bottom: 10px;
+}
+.dw-padding-tb-5{
+  padding: 5px 0;
+}
+.dw-padding-left-10{
+  padding-left: 10px;
+}
+.dw-text-align-center{
+  text-align: center;
+}
+.dw-cursor-pointer{
+  cursor: pointer;
+}
+.dw-font-12{
+  font-size: 12px;
+}
+.dw-color-grey-10{
+  color: #afafb0;
+}
+.dw-color-12{
+  color: lightgrey;
+}
+.dw-color-333{
+  color: #333;
+}
+.dw-bg-white{
+  background-color: white;
+}
+.dw-width-100bf{
+  width: 100%;
+}
+.dw-height-20px{
+  height: 20px;
+}
+.dw-event-color{
+  /*color: #095aaa;*/
+  color: var(--dw-primary-button-theme-color);
+}
+
+.dw-btn-blue-1{
+  background: #b5d8fc;
+  text-align: center;
+  /*border: 1px solid #095aaa;*/
+  /*color: #095aaa;*/
+  border: 1px solid var(--dw-primary-button-theme-color);
+  color: var(--dw-primary-button-theme-color);
+  background: var(--dw-primary-button-bg-color-6);
+}
+
+.dwDragClass{
+  background: #f5f5f5;
+  /*border: 1px solid dodgerblue;*/
+  border: 1px solid var(--dw-primary-button-theme-color);
+}
+.dwGhostClass{
+  background: #e5ecfa;
+  /*border: 1px dashed dodgerblue;*/
+  border: 1px dashed var(--dw-primary-button-theme-color);
+}
+
+/** 横向等分排列，默认2等分 **/
+.dw-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(auto,1fr));
+  grid-column-gap: 10px;
+  grid-row-gap: 0;
+  align-items: center;
+  align-content: center;
+  justify-items: start;
+  justify-content: start;
+}
+
+.logo a{
+  text-decoration: none;
+}
+/* 隐藏滚动条 */
+.scrollable-hidden {
+  scrollbar-width: none; /* Firefox */
+}
+
+/* 启用滚动 */
+.scrollable-y {
+  overflow-y: scroll; /* 对于垂直滚动 */
+}
+.scrollable-x {
+  overflow-x: scroll; /* 对于垂直滚动 */
+}
+.user-select-none{
+  -webkit-user-select: none;  /* Safari */
+  -moz-user-select: none;     /* Firefox */
+  -ms-user-select: none;      /* IE/Edge */
+  user-select: none;          /* 标准语法 */
+}

@@ -1,0 +1,13 @@
+.dw-design-logic-item {
+  background: none;
+  padding: 5px;
+  margin-bottom: 5px;
+
+  &:hover {
+    background: #efefef;
+  }
+}
+
+.logic-item-error {
+  border: 1px solid red;
+} 

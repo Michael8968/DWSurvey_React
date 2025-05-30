@@ -1,0 +1,23 @@
+.dw-qu-item-el-checkbox-radio-icon {
+  font-size: 18px;
+  width: 28px;
+  color: #848484;
+}
+
+table, tbody, tr, th, td {
+  border: none;
+}
+
+td {
+  border-top: 1px solid #d8d8d9;
+}
+
+/* 交替行颜色 */
+tbody tr:nth-child(odd) td {
+  background-color: #f9f9f9;
+}
+
+/* 偶数行颜色 */
+tbody tr:nth-child(even) td {
+  background-color: #f0f0f0;
+} 

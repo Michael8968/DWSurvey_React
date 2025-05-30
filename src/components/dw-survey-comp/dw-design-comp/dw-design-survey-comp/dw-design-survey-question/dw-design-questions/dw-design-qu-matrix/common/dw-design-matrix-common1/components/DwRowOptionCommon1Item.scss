@@ -1,0 +1,41 @@
+.dw-qu-item {
+  padding: 8px 0;
+  margin: 0;
+  position: relative;
+
+  &:hover {
+    background-color: #f5f7fa;
+  }
+
+  .dw-qu-item-toolbar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    padding: 8px;
+  }
+
+  .dw-display-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .dw-question-toolbar {
+    cursor: pointer;
+    color: #409EFF;
+    
+    &:hover {
+      color: #66b1ff;
+    }
+  }
+
+  .dw-qu-item-body {
+    padding: 0 8px;
+  }
+
+  .dw-qu-item-el-checkbox-radio {
+    display: flex;
+    align-items: center;
+  }
+} 

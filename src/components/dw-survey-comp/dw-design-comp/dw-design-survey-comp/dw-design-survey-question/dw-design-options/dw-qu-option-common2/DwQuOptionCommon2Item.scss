@@ -1,0 +1,104 @@
+.dw-padding-top-10 {
+  padding-top: 10px;
+}
+
+.dw-margin-bottom-10 {
+  margin-bottom: 10px;
+}
+
+.dw-margin-left-right-10 {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.dw-margin-right-10 {
+  margin-right: 10px;
+}
+
+.dw-margin-left-10 {
+  margin-left: 10px;
+}
+
+.dw-display-flex {
+  display: flex;
+  align-items: center;
+}
+
+.dw-display-flex-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.dw-display-flex-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.dw-event-color {
+  color: #095aaa;
+  color: var(--dw-primary-button-theme-color);
+}
+
+.dw-qu-item {
+  display: grid;
+  grid-template-columns: auto 90px;
+}
+
+.dw-qu-item-body {
+  margin: 0;
+}
+
+.dw-qu-item-el-checkbox-radio {
+  display: flex;
+  align-items: center;
+  padding: 5px 0px;
+  font-size: 14px;
+}
+
+.dw-qu-item-el-checkbox-radio-icon {
+  font-size: 18px;
+  width: 28px;
+  color: #848484;
+}
+
+.dw-qu-item-el-checkbox-radio-icon.dw-checked {
+  color: #0557a8;
+}
+
+.dw-qu-item-el-checkbox-radio .dw-qu-option-text {
+  width: 100%;
+  padding: 6px;
+}
+
+.dw-input-default {
+  border: 1px solid transparent;
+}
+
+.dw-input-focus {
+  border: 1px solid #095aaa;
+  background: #e5f5f5;
+}
+
+.dw-qu-item-toolbar {
+  position: absolute;
+  right: 40px;
+  top: -20px;
+  z-index: 10;
+}
+
+.dw-qu-item-toolbar .dw-question-toolbar {
+  padding: 2px 3px 0px 3px;
+  line-height: normal;
+}
+
+.dw-el-badge-option-score {
+  :global(.el-badge__content) {
+    border-radius: 3px;
+    font-size: 8px;
+    height: 14px;
+    line-height: 14px;
+    padding: 0 2px;
+  }
+} 

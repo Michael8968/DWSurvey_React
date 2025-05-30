@@ -1,0 +1,21 @@
+table, tbody, tr, th, td {
+  border-spacing: 0;
+  border: none;
+}
+
+td {
+  padding: 0;
+}
+
+tbody tr:last-child td {
+  padding-bottom: 5px;
+}
+
+:global(.el-slider__runway) {
+  margin: 0 !important;
+}
+
+.dw-display-flex {
+  display: flex;
+  align-items: center;
+} 

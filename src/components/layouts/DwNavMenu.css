@@ -1,0 +1,37 @@
+.dw-menu {
+  height: 80px;
+  line-height: 80px;
+  font-weight: 400;
+  font-size: 16px;
+  border-bottom: none;
+  background-color: var(--dw-primary-bg-color);
+}
+
+.dw-menu .ant-menu-item {
+  height: 80px;
+  line-height: 80px;
+}
+
+.dw-menu .ant-menu-submenu-title {
+  height: 80px;
+  line-height: 80px;
+}
+
+.dw-menu .ant-menu-item.is-active {
+  background-color: var(--dw-primary-bg-color-active);
+  color: white;
+  border-bottom: 2px solid var(--dw-primary-bg-color-active);
+}
+
+.dw-menu .ant-menu-item:hover,
+.dw-menu .ant-menu-item:focus,
+.dw-menu .ant-menu-submenu-title:hover {
+  background-color: var(--dw-primary-bg-color-hover) !important;
+  border-bottom: 2px solid var(--dw-primary-bg-color-hover) !important;
+}
+
+.dw-menu .ant-menu-item i,
+.dw-menu .ant-menu-submenu-title i {
+  vertical-align: text-top;
+  color: inherit;
+} 

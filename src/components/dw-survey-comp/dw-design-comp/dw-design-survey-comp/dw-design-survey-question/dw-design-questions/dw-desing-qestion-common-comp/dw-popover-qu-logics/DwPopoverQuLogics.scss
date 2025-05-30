@@ -1,0 +1,21 @@
+.dw-msg-waring {
+  .el-icon-info,
+  .el-message__content {
+    color: #fd5757;
+    padding: 5px;
+  }
+}
+
+.dw-design-logic-item {
+  background: none;
+  padding: 5px;
+  margin-bottom: 5px;
+
+  &:hover {
+    background: #efefef;
+  }
+}
+
+.logic-item-error {
+  border: 1px solid red;
+} 
