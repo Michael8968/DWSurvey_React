@@ -1,0 +1,68 @@
+.dw-padding-top-10 {
+  padding-top: 10px;
+}
+
+.dw-margin-bottom-10 {
+  margin-bottom: 10px;
+}
+
+.dw-margin-left-right-10 {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.dw-margin-right-10 {
+  margin-right: 10px;
+}
+
+.dw-margin-left-10 {
+  margin-left: 10px;
+}
+
+.dw-display-flex {
+  display: flex;
+  align-items: center;
+}
+
+.dw-display-flex-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.dw-display-flex-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.dw-event-color {
+  color: #095aaa;
+}
+
+.dw-qu-item {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.dw-qu-item-body {
+  margin: 0px;
+  font-size: 14px;
+}
+
+.dw-input-default {
+  border: 1px solid transparent;
+}
+
+.dw-input-focus {
+  border: 1px solid #095aaa;
+  background: #b0275e;
+}
+
+:global(.el-rate__icon) {
+  font-size: 22px;
+}
+
+.dw-answer-question-option-error {
+  margin: 5px 0;
+} 

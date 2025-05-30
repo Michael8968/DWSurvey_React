@@ -1,0 +1,29 @@
+.dw-answer-container {
+  min-height: 100vh;
+}
+
+.el-progress {
+  border-radius: 0 !important;
+}
+
+.el-progress .el-progress-bar {
+  border-radius: 0 !important;
+}
+
+.el-progress .el-progress-bar .el-progress-bar__outer {
+  border-radius: 0 !important;
+}
+
+.el-progress .el-progress-bar .el-progress-bar__outer .el-progress-bar__inner {
+  border-radius: 0 !important;
+}
+
+.el-progress .el-progress__text {
+  font-size: 12px;
+}
+
+.dw-survey-answer-progress {
+  top: 0;
+  width: 100%;
+  left: 0;
+} 

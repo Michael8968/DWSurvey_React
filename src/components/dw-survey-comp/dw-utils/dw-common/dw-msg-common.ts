@@ -26,4 +26,14 @@ export const dwGetMsgColor = (type: string): string => {
     'info': '#1890ff'
   };
   return colors[type] || '#1890ff';
+};
+
+export const showReadNotify = (survey: any) => {
+  if (survey.readonly) {
+    // 使用 antd 的 message 组件显示提示
+    const { message } = require('antd');
+    message.info('当前为只读模式');
+    return true;
+  }
+  return false;
 }; 

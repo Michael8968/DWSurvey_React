@@ -44,7 +44,7 @@ interface DwSurveyDcsWrapperV6Props {
   isSurveyLog?: boolean;
   isAnswerLog?: boolean;
   isAnswerUrlV6?: boolean;
-  children?: React.ReactNode;
+  children?: (props: { survey: Survey }) => React.ReactNode;
 }
 
 const DwSurveyDcsWrapperV6: React.FC<DwSurveyDcsWrapperV6Props> = ({
@@ -277,7 +277,7 @@ const DwSurveyDcsWrapperV6: React.FC<DwSurveyDcsWrapperV6Props> = ({
 
               {/* 主要内容区域 */}
               <div className="dw-dcs-main-survey-step-main">
-                {children}
+                {children && children({ survey })}
               </div>
             </div>
           </div>

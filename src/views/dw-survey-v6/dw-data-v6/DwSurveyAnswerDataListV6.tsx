@@ -21,7 +21,7 @@ const DwSurveyAnswerDataListV6: React.FC = () => {
   };
 
   return (
-    <DwSurveyDcsWrapperV6 isAnswerData={true}>
+    <DwSurveyDcsWrapperV6 isAnswerData={true} id={'dw-survey-answer-data-list-v6'}>
       {() => (
         <div>
           {thSurvey && <DwSurveyAnswerDataList survey={thSurvey} />}

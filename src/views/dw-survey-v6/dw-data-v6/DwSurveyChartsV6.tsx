@@ -5,7 +5,7 @@ import DwSurveyDcsWrapperV6 from '@/components/common/DwSurveyDcsWrapperV6';
 const DwSurveyChartsV6: React.FC = () => {
   return (
     <div>
-      <DwSurveyDcsWrapperV6 isSurveyChart={true}>
+      <DwSurveyDcsWrapperV6 isSurveyChart={true} id={'dw-survey-charts-v6'}>
         {() => <DwSurveyAnswerCharts />}
       </DwSurveyDcsWrapperV6>
     </div>

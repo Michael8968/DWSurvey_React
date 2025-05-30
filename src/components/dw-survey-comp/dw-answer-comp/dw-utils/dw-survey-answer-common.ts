@@ -4,7 +4,7 @@ import {getQuestionAnswerData} from '../../dw-utils/dw-survey-answer'
 import {validateQuestion} from '../../dw-utils/dw-survey-answer-validate.ts'
 import {surveyAnswerLocalStorage} from './dw-survey-answer-utils.ts'
 import {answerSurveyProgress} from './dw-survey-answer-progress.ts'
-import {dwSurveyAnswerLogic} from './dw-survey-answer-logic'
+import {dwSurveyAnswerLogic} from './dw-survey-answer-logic.ts'
 
 /**
  * 根据SurveyId 取 surveyJson
@@ -12,7 +12,7 @@ import {dwSurveyAnswerLogic} from './dw-survey-answer-logic'
  * @param successCallback
  * @param noJsonCallback
  */
-export function getSurveyAnswerJsonBySurveyId (params, successCallback, noJsonCallback) {
+export function getSurveyAnswerJsonBySurveyId (params: any, successCallback: any, noJsonCallback: any) {
   // 先看看有没有JSON，有就取JSON数据。没有再取原来的Survey结构数据进行转换
   dwSurveyJsonBySurveyId(params).then((response) => {
     const httpResult = response.data
@@ -31,7 +31,7 @@ export function getSurveyAnswerJsonBySurveyId (params, successCallback, noJsonCa
   })
 }
 
-export function answerQuEventCommon (survey, quIndex) {
+export function answerQuEventCommon (survey: any, quIndex: any) {
   /*
   getQuestionAnswerData(this.survey.questions[this.quIndex])
   validateQuestion(this.survey.questions[this.quIndex])
@@ -40,7 +40,7 @@ export function answerQuEventCommon (survey, quIndex) {
   answerQuEventCommonExt(survey, quIndex, false)
 }
 
-export function answerQuEventCommonExt (survey, quIndex, showOptionError) {
+export function answerQuEventCommonExt (survey: any, quIndex: any, showOptionError: any) {
   /*
   getQuestionAnswerData(this.survey.questions[this.quIndex])
   validateQuestion(this.survey.questions[this.quIndex])

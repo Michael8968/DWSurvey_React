@@ -13,10 +13,10 @@ import {
 } from 'antd';
 import { useParams } from 'react-router-dom';
 import DwSurveyDcsWrapperV6 from '@/components/common/DwSurveyDcsWrapperV6';
-import { getDesignSurveyJsonBySurveyId } from '@/components/dw-survey-comp/dw-utils/dw-survey-common';
-import { clearSurveyJson, getSurveyJsonSimple } from '@/components/dw-survey-comp/dw-utils/dw-survey-design';
-import { clearSurveyAnswer } from '@/components/dw-survey-comp/dw-answer-comp/dw-utils/dw-survey-answer-clear';
-import { dwSaveSurveyJson } from '@/components/dw-survey-comp/dw-design-comp/dw-design-survey-comp/api/dw-design-survey-api';
+import { getDesignSurveyJsonBySurveyId } from '@/components/dw-survey-comp/dw-utils/dw-survey-common.ts';
+import { clearSurveyJson, getSurveyJsonSimple } from '@/components/dw-survey-comp/dw-utils/dw-survey-design.ts';
+import { clearSurveyAnswer } from '@/components/dw-survey-comp/dw-answer-comp/dw-utils/dw-survey-answer-clear.ts';
+import { dwSaveSurveyJson } from '@/components/dw-survey-comp/dw-design-comp/dw-design-survey-comp/api/dw-design-survey-api.ts';
 
 const { Option } = Select;
 
@@ -110,7 +110,7 @@ const DwSurveyAttrSet: React.FC = () => {
 
   return (
     <div>
-      <DwSurveyDcsWrapperV6 isSurveySet={true}>
+      <DwSurveyDcsWrapperV6 isSurveySet={true} id={dwSurveyId || ''}>
         {({ survey }) => (
           <div style={{ padding: '0 30px' }}>
             {loading ? (
@@ -155,7 +155,7 @@ const DwSurveyAttrSet: React.FC = () => {
                                     ...thSurvey.surveyAttrs,
                                     anBroAttr: {
                                       ...thSurvey.surveyAttrs.anBroAttr,
-                                      anNum: value
+                                      anNum: value || 0
                                     }
                                   }
                                 })}
@@ -195,7 +195,7 @@ const DwSurveyAttrSet: React.FC = () => {
                                     ...thSurvey.surveyAttrs,
                                     anIpAttr: {
                                       ...thSurvey.surveyAttrs.anIpAttr,
-                                      anNum: value
+                                      anNum: value || 0
                                     }
                                   }
                                 })}
@@ -289,13 +289,14 @@ const DwSurveyAttrSet: React.FC = () => {
                                     ...thSurvey.surveyAttrs,
                                     anEndNumAttr: {
                                       ...thSurvey.surveyAttrs.anEndNumAttr,
-                                      endNum: value
+                                      endNum: value || 0
                                     }
                                   }
                                 })}
                                 min={1}
                                 max={100000}
-                                controls={{ position: 'right' }}
+                                size="small"
+                                style={{ width: 130 }}
                               />
                               份时结束
                             </Checkbox>
