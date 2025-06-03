@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { Button, Form, Input, Image, message } from 'antd';
-import DwAnswerQuestion from '../dw-answer-survey-question/DwAnswerQuestion';
-import DwHtmlLabelCommon from '../dw-answer-survey-common/DwHtmlLabelCommon';
+import DwAnswerQuestion from '../dw-answer-survey-question/DwAnswerQuestion.tsx';
+import DwHtmlLabelCommon from '../dw-answer-survey-common/DwHtmlLabelCommon.tsx';
 import { getSurveyAnswerData } from '../../dw-utils/dw-survey-answer.ts';
 import { validateQuestionsBool, validateQuestionsBoolBySurvey } from '../../dw-utils/dw-survey-answer-validate.ts';
 import { dwSaveSurveyAnswerJson, dwSurveyAnswerCheckPwd } from '../api/dw-survey-answer.ts';

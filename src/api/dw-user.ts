@@ -1,16 +1,24 @@
-import axios from 'axios';
-import request from '@/utils/request';
+import request from '@/utils/request'
+import API from '@/api/index.js'
 
-export const dwUserPwd = async (oldPass: string, newPass: string) => {
-  return axios.post('/api/user/password', {
-    oldPassword: oldPass,
-    newPassword: newPass
-  });
-};
-
-export const dwUserInfo = () => {
+// 登录方法
+export function dwUserInfo () {
   return request({
-    url: '/api/user/info',
+    url: API.curUserInfo,
     method: 'get'
-  });
-}; 
+  })
+}
+
+// 退出方法
+export function dwUserPwd (curpwd: string, pwd: string) {
+  const params = {
+    curpwd,
+    pwd
+  }
+  return request({
+    url: API.curUserPwdUpdate,
+    method: 'post',
+    params
+  })
+}
+

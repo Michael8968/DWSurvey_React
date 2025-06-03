@@ -102,8 +102,8 @@ const DwSurveyDcsWrapperV6: React.FC<DwSurveyDcsWrapperV6Props> = ({
 
   const surveyStateChange = (value: number) => {
     console.debug(value);
-    dwSurveyUpState(id, value).then((response) => {
-      const httpResult = response.data;
+    dwSurveyUpState( id, value ).then((response) => {
+      const httpResult: any = response.data;
       if (httpResult.resultCode === 200) {
         message.success(`${survey.surveyTypeSimpleName}状态设置成功`);
       } else {
@@ -113,8 +113,8 @@ const DwSurveyDcsWrapperV6: React.FC<DwSurveyDcsWrapperV6Props> = ({
   };
 
   const getSurveyInfo = () => {
-    dwSurveyInfo(id).then((response) => {
-      const resultData = response.data.data;
+    dwSurveyInfo(id).then((response: any) => {
+      const resultData: any = response.data.data;
       const updatedSurvey = {
         ...resultData,
         answerUrl: `${window.location.origin}/#/diaowen/${resultData.sid}`,
@@ -140,13 +140,13 @@ const DwSurveyDcsWrapperV6: React.FC<DwSurveyDcsWrapperV6Props> = ({
   const renderStateTag = () => {
     switch (survey.surveyState) {
       case 0:
-        return <Tag size="small">设计中</Tag>;
+        return <Tag color="processing">设计中</Tag>;
       case 1:
-        return <Tag type="success" size="small">收集中</Tag>;
+        return <Tag color="processing">收集中</Tag>;
       case 2:
-        return <Tag type="default" size="small">收集结束</Tag>;
+        return <Tag color="success">收集结束</Tag>;
       default:
-        return <Tag size="small">未知</Tag>;
+        return <Tag color="default">未知</Tag>;
     }
   };
 

@@ -1,142 +1,161 @@
-import { v4 as uuidV4 } from 'uuid';
-import { Question, Survey, Option } from './dw-survey-parse';
+import {v4 as uuidv4} from 'uuid'
+import {parseQuestion} from './dw-survey-parse'
 
-export const dwResetQuestionRefreshValue = (question: Question): Question => {
-  const newQuestion = { ...question };
-  newQuestion.id = uuidV4();
-  newQuestion.quFocusObj = {
-    quFocus: false,
-    quMoreOptionShowEdit: false,
-    quMoreOptionShow: false,
-    quScorePopoverShow: false,
-    quScaleTextPopoverShow: false
-  };
-  return newQuestion;
-};
-
-export const dwResetSurveyQuestionRefreshValue = (survey: Survey): Survey => {
-  const newSurvey = { ...survey };
-  newSurvey.questions = newSurvey.questions.map(question => dwResetQuestionRefreshValue(question));
-  return newSurvey;
-};
-
-export const dwSurveyQuAddOption = (survey: Survey, index: number): void => {
-  const question = survey.questions[index];
-  if (!question.quOptions) {
-    question.quOptions = [];
+export function dwSurveyQuAddMatrixColOption (survey: any, index: number, quOption: any) {
+  const quType = survey.questions[index].quType
+  if (quType === 'MATRIX_RADIO') {
+    const quOptions = survey.questions[index].quCols
+    quOptions.push(quOption)
+  } else if (quType === 'MATRIX_CHECKBOX') {
+    const quOptions = survey.questions[index].quCols
+    quOptions.push(quOption)
+  } else if (quType === 'MATRIX_INPUT') {
+    const quOptions = survey.questions[index].quCols
+    quOptions.push(quOption)
   }
-
-  const newOption: Option = {
-    id: uuidV4(),
-    optionText: '',
-    optionValue: '',
-    isOther: false,
-    isBlank: false,
-    isRequired: false,
-    isScore: false,
-    score: 0,
-    isLogic: false,
-    logicType: '',
-    logicValue: '',
-    logicQuId: '',
-    logicQuOptionId: '',
-    isShow: true,
-    isShowOption: true,
-    isShowOptionText: true,
-    isShowOptionValue: true,
-    isShowOptionScore: true,
-    isShowOptionLogic: true,
-    isShowOptionOther: true,
-    isShowOptionBlank: true,
-    isShowOptionRequired: true,
-    isShowOptionShow: true,
-    isShowOptionShowOption: true,
-    isShowOptionShowOptionText: true,
-    isShowOptionShowOptionValue: true,
-    isShowOptionShowOptionScore: true,
-    isShowOptionShowOptionLogic: true,
-    isShowOptionShowOptionOther: true,
-    isShowOptionShowOptionBlank: true,
-    isShowOptionShowOptionRequired: true,
-    isShowOptionShowOptionShow: true
-  };
-
-  question.quOptions.push(newOption);
-};
-
-export const dwSurveyQuUpdateOption = (survey: Survey, index: number, optionIndex: number, option: Partial<Option>): void => {
-  const question = survey.questions[index];
-  if (question.quOptions && question.quOptions[optionIndex]) {
-    question.quOptions[optionIndex] = { ...question.quOptions[optionIndex], ...option };
+  return survey
+}
+export function dwSurveyQuAddOption (survey: any, index: number, quOption: any) {
+  /*
+  // 从组件中抽取的原代码片段备注
+  const quType = this.survey.questions[this.index].quType
+  // const quOption = {id: null, optionTitleObj: {dwHtml: '', dwText: '', dwPlaceholder: '请输入内容'}, itemClick: false}
+  if (quType === 'RADIO') {
+    const quOptions = this.survey.questions[this.index].quRadios
+    quOptions.push(quOption)
+    this.survey.questions[this.index].quRadios = quOptions
+  } else if (quType === 'CHECKBOX') {
+    const quOptions = this.survey.questions[this.index].quCheckboxs
+    quOptions.push(quOption)
+    this.survey.questions[this.index].quCheckboxs = quOptions
   }
-};
-
-export const dwSurveyQuDeleteOption = (survey: Survey, index: number, optionIndex: number): void => {
-  const question = survey.questions[index];
-  if (question.quOptions) {
-    question.quOptions.splice(optionIndex, 1);
+  console.debug('question', this.survey.questions[this.index])
+  */
+  const quType = survey.questions[index].quType
+  // const quOption = {id: null, optionTitleObj: {dwHtml: '', dwText: '', dwPlaceholder: '请输入内容'}, itemClick: false}
+  if (quType === 'RADIO') {
+    const quOptions = survey.questions[index].quRadios
+    quOptions.push(quOption)
+    survey.questions[index].quRadios = quOptions
+  } else if (quType === 'CHECKBOX') {
+    const quOptions = survey.questions[index].quCheckboxs
+    quOptions.push(quOption)
+    survey.questions[index].quCheckboxs = quOptions
+  } else if (quType === 'SCORE') {
+    const quOptions = survey.questions[index].quScores
+    quOptions.push(quOption)
+    survey.questions[index].quScores = quOptions
+  } else if (quType === 'ORDERQU') {
+    const quOptions = survey.questions[index].quOrderbys
+    quOptions.push(quOption)
+    survey.questions[index].quOrderbys = quOptions
+  } else if (quType === 'MULTIFILLBLANK') {
+    const quOptions = survey.questions[index].quMultiFillblanks
+    quOptions.push(quOption)
+    survey.questions[index].quMultiFillblanks = quOptions
+  } else if (quType === 'MATRIX_RADIO') {
+    const quOptions = survey.questions[index].quRows
+    quOptions.push(quOption)
+  } else if (quType === 'MATRIX_CHECKBOX') {
+    const quOptions = survey.questions[index].quRows
+    quOptions.push(quOption)
+  } else if (quType === 'MATRIX_INPUT') {
+    const quOptions = survey.questions[index].quRows
+    quOptions.push(quOption)
+  } else if (quType === 'MATRIX_SCALE' || quType === 'MATRIX_SLIDER') {
+    const quOptions = survey.questions[index].quRows
+    if (quType==='MATRIX_SCALE' || quType === 'MATRIX_SLIDER') {
+      quOption.lr = {
+        left: {optionTitleObj: {dwHtml: `极不可能`, dwText: `不可能`, dwPlaceholder: '请输入选项内容'}},
+        right: {optionTitleObj: {dwHtml: `极有可能`, dwText: `极有可能`, dwPlaceholder: '请输入选项内容'}}
+      }
+    }
+    quOptions.push(quOption)
   }
-};
-
-export const dwSurveyQuMoveOption = (survey: Survey, index: number, oldIndex: number, newIndex: number): void => {
-  const question = survey.questions[index];
-  if (question.quOptions) {
-    const option = question.quOptions[oldIndex];
-    question.quOptions.splice(oldIndex, 1);
-    question.quOptions.splice(newIndex, 0, option);
-  }
-};
-
-export const dwSurveyQuUpdateTitle = (survey: Survey, index: number, title: string): void => {
-  const question = survey.questions[index];
-  if (question.quTitleObj) {
-    question.quTitleObj.dwText = title;
-    question.quTitleObj.dwHtml = title;
-  }
-};
-
-export const dwSurveyQuUpdateNote = (survey: Survey, index: number, note: string): void => {
-  const question = survey.questions[index];
-  if (question.quNoteObj) {
-    question.quNoteObj.dwText = note;
-    question.quNoteObj.dwHtml = note;
-  }
-};
-
-export const dwSurveyQuUpdateAttr = (survey: Survey, index: number, attr: Partial<Question['quAttr']>): void => {
-  const question = survey.questions[index];
-  if (question.quAttr) {
-    question.quAttr = { ...question.quAttr, ...attr };
-  }
-};
-
-export const dwSurveyQuUpdateLogic = (survey: Survey, index: number, logic: any): void => {
-  const question = survey.questions[index];
-  if (question.questionLogics) {
-    question.questionLogics = logic;
-  }
-};
-
-export const dwSurveyQuUpdateOptionScore = (survey: Survey, index: number, optionIndex: number, score: number): void => {
-  const question = survey.questions[index];
-  if (question.quOptions && question.quOptions[optionIndex]) {
-    question.quOptions[optionIndex].score = score;
-  }
-};
-
-interface OptionLogic {
-  logicType: string;
-  logicValue: string;
-  logicQuId: string;
-  logicQuOptionId: string;
+  // console.debug('question', survey.questions[index])
+  parseQuestion(survey.questions[index], true)
+  return survey
 }
 
-export const dwSurveyQuUpdateOptionLogic = (survey: Survey, index: number, optionIndex: number, logic: OptionLogic): void => {
-  const question = survey.questions[index];
-  if (question.quOptions && question.quOptions[optionIndex]) {
-    question.quOptions[optionIndex].logicType = logic.logicType;
-    question.quOptions[optionIndex].logicValue = logic.logicValue;
-    question.quOptions[optionIndex].logicQuId = logic.logicQuId;
-    question.quOptions[optionIndex].logicQuOptionId = logic.logicQuOptionId;
+/**
+ * 重置对应题目选项，一般用于清空选项重新设置时。
+ * @param survey
+ * @param index
+ * @param callback
+ */
+export function dwResetQuOptions (survey: any, index: number, callback: (survey: any) => void) {
+  // 进行重置
+  const quType = survey.questions[index].quType
+  if (quType === 'RADIO') survey.questions[index].quRadios = []
+  else if (quType === 'CHECKBOX') survey.questions[index].quCheckboxs = []
+  else if (quType === 'SCORE') survey.questions[index].quOrderbys = []
+  callback(survey)
+}
+
+/**
+ * 将对应的题目选项转换成回车分隔的纯文本，对于可能有html标签的题目选项不合适。
+ * @param survey
+ * @param index
+ * @returns {string}
+ */
+export function dwOption2Texts (survey: any, index: number) {
+  const quType = survey.questions[index].quType
+  let quOptions = []
+  if (quType === 'RADIO') quOptions = survey.questions[index].quRadios
+  else if (quType === 'CHECKBOX') quOptions = survey.questions[index].quCheckboxs
+  let optionText = ''
+  quOptions.forEach((item: any, index: number) => {
+    optionText += item.optionTitleObj.dwText + '\r\n'
+  })
+  return optionText
+}
+
+/**
+ * 刷新question刷新状态
+ * @param question
+ * @param callback
+ */
+export function dwResetQuestionRefreshValue (question: any) {
+  // 进行重置
+  question.quTitleObj.isRefreshValue = true
+  question.quNoteObj.isRefreshValue = true
+  if (!question.hasOwnProperty('dwId')) question.dwId = uuidv4()
+  const quType = question.quType
+  if (quType === 'RADIO') {
+    question.quRadios.forEach((item: any, index: number) => {
+      item.optionTitleObj.isRefreshValue = true
+      return item
+    })
+  } else if (quType === 'CHECKBOX') {
+    question.quCheckboxs.forEach((item: any, index: number) => {
+      item.optionTitleObj.isRefreshValue = true
+      return item
+    })
+  } else if (quType === 'SCORE') {
+    question.quScores.forEach((item: any, index: number) => {
+      item.optionTitleObj.isRefreshValue = true
+      return item
+    })
+  } else if (quType === 'ORDERQU') {
+    question.quOrderbys.forEach((item: any, index: number) => {
+      item.optionTitleObj.isRefreshValue = true
+      return item
+    })
   }
-}; 
+  return question
+}
+
+/**
+ * 刷新所有question
+ * @param survey
+ * @returns {*}
+ */
+export function dwResetSurveyQuestionRefreshValue (survey: any) {
+  // 进行重置
+  const questions = survey.questions
+  questions.forEach((item: any, index: number) => {
+    return dwResetQuestionRefreshValue(item)
+  })
+  survey.questions = questions
+  return survey
+}

@@ -1,118 +1,82 @@
-import { Question } from '../dw-survey-parse';
-
-export const dwGetQuestionScore = (question: Question): number => {
-  if (!question.quAttr?.scoreAttr) {
-    return 0;
+export function caleDesignSurveySumScore (survey: any, index: number) {
+  // 调用计算总分方法
+  // 1、计算当前题总分
+  if (survey!==null && survey!==undefined) {
+    const question = survey.questions[index]
+    if (question!==null && question!==undefined) {
+      const quType = question.quType
+      let quMaxScore = 0
+      if (quType==='RADIO') {
+        // 计算单选分数
+        const quRadios: any[] = survey.questions[index].quRadios
+        quRadios.forEach((quRadio: any, optionIndex: number) => {
+          const optionScoreNum = quRadio.scoreNum
+          if (optionScoreNum!=null && optionScoreNum>0) {
+            if (quMaxScore<optionScoreNum) quMaxScore = optionScoreNum
+          }
+        })
+      } else if (quType==='CHECKBOX') {
+        // 计算多选分数
+        const quCheckboxs: any[] = survey.questions[index].quCheckboxs
+        quCheckboxs.forEach((quCheckbox: any, optionIndex: number) => {
+          const optionScoreNum = quCheckbox.scoreNum
+          if (optionScoreNum!=null && optionScoreNum>0) {
+            quMaxScore+= optionScoreNum
+          }
+        })
+        const scoreAttr = survey.questions[index].quAttr.scoreAttr
+        if (scoreAttr.hasOwnProperty('allRight') && scoreAttr.allRight.enabled) {
+          quMaxScore = survey.questions[index].quAttr.scoreAttr.allRight.scoreNum
+        }
+      } else if (quType==='MATRIX_RADIO') {
+        // 计算矩阵单选分数
+        const quCols: any[] = survey.questions[index].quCols
+        quCols.forEach((quRadio: any, optionIndex: number) => {
+          const optionScoreNum = quRadio.scoreNum
+          if (optionScoreNum!=null && optionScoreNum>0) {
+            if (quMaxScore<optionScoreNum) quMaxScore = optionScoreNum
+          }
+        })
+        quMaxScore = quMaxScore * survey.questions[index].quRows.length
+      } else if (quType==='MATRIX_CHECKBOX') {
+        // 计算矩阵单选分数
+        const quCols: any[] = survey.questions[index].quCols
+        quCols.forEach((quRadio: any, optionIndex: number) => {
+          const optionScoreNum = quRadio.scoreNum
+          if (optionScoreNum!=null && optionScoreNum>0) {
+            quMaxScore+= optionScoreNum
+          }
+        })
+        quMaxScore = quMaxScore * survey.questions[index].quRows.length
+      }
+      survey.questions[index].quAttr.scoreAttr.maxScore = quMaxScore
+      // 如果以上题设置了分值，且大于0，则自动启用分值计算功能
+      if (quMaxScore>0) {
+        survey.questions[index].quAttr.scoreAttr.designShowScoreNum = true
+        // 自动启用问卷的计分功能
+        survey.surveyAttrs.scoreAttr.enabled = true
+      }
+      // 2、计算问卷总分
+      let surveyMaxScore = 0
+      const questions: any[] = survey.questions
+      questions.forEach((question: any, quIndex: number) => {
+        const thQuType = question.quType
+        if (thQuType==='SCORE') {
+          // 计分题 calcSumScore
+          const quScores: any[] = question.quScores
+          let quMaxScore = 0
+          quScores.forEach((quScore: any, optionIndex: number) => {
+            quMaxScore+= question.paramInt02
+          })
+          question.quAttr.scoreAttr.maxScore = quMaxScore
+          question.quAttr.scoreAttr.designShowScoreNum = true
+        }
+        if (question.hasOwnProperty('quAttr') && question.quAttr.hasOwnProperty('scoreAttr') && question.quAttr.scoreAttr.hasOwnProperty('maxScore')) {
+          surveyMaxScore+=question.quAttr.scoreAttr.maxScore
+        }
+      })
+      survey.surveyAttrs.scoreAttr.maxScore = surveyMaxScore
+      // survey.surveyAttrs.scoreAttr.enabled = true
+    }
   }
-  return question.quAttr.scoreAttr.maxScore || 0;
-};
-
-export const dwGetQuestionScoreText = (question: Question): string => {
-  const score = dwGetQuestionScore(question);
-  return score > 0 ? `${score}分` : '不计分';
-};
-
-export const dwGetQuestionScoreColor = (question: Question): string => {
-  const score = dwGetQuestionScore(question);
-  if (score <= 0) {
-    return '#999999';
-  } else if (score <= 5) {
-    return '#52c41a';
-  } else if (score <= 10) {
-    return '#1890ff';
-  } else if (score <= 20) {
-    return '#faad14';
-  } else {
-    return '#f5222d';
-  }
-};
-
-export const dwGetQuestionScoreIcon = (question: Question): string => {
-  const score = dwGetQuestionScore(question);
-  if (score <= 0) {
-    return 'icon-score-0';
-  } else if (score <= 5) {
-    return 'icon-score-5';
-  } else if (score <= 10) {
-    return 'icon-score-10';
-  } else if (score <= 20) {
-    return 'icon-score-20';
-  } else {
-    return 'icon-score-50';
-  }
-};
-
-export const dwGetQuestionScoreLevel = (question: Question): string => {
-  const score = dwGetQuestionScore(question);
-  if (score <= 0) {
-    return '不计分';
-  } else if (score <= 5) {
-    return '简单';
-  } else if (score <= 10) {
-    return '一般';
-  } else if (score <= 20) {
-    return '困难';
-  } else {
-    return '极难';
-  }
-};
-
-export const dwGetQuestionScoreLevelColor = (question: Question): string => {
-  const score = dwGetQuestionScore(question);
-  if (score <= 0) {
-    return '#999999';
-  } else if (score <= 5) {
-    return '#52c41a';
-  } else if (score <= 10) {
-    return '#1890ff';
-  } else if (score <= 20) {
-    return '#faad14';
-  } else {
-    return '#f5222d';
-  }
-};
-
-export const dwGetQuestionScoreLevelIcon = (question: Question): string => {
-  const score = dwGetQuestionScore(question);
-  if (score <= 0) {
-    return 'icon-level-0';
-  } else if (score <= 5) {
-    return 'icon-level-1';
-  } else if (score <= 10) {
-    return 'icon-level-2';
-  } else if (score <= 20) {
-    return 'icon-level-3';
-  } else {
-    return 'icon-level-4';
-  }
-};
-
-export const dwGetQuestionScoreLevelText = (question: Question): string => {
-  const score = dwGetQuestionScore(question);
-  if (score <= 0) {
-    return '不计分';
-  } else if (score <= 5) {
-    return '简单';
-  } else if (score <= 10) {
-    return '一般';
-  } else if (score <= 20) {
-    return '困难';
-  } else {
-    return '极难';
-  }
-};
-
-export const dwGetQuestionScoreLevelDesc = (question: Question): string => {
-  const score = dwGetQuestionScore(question);
-  if (score <= 0) {
-    return '此题不计分';
-  } else if (score <= 5) {
-    return '此题较简单，分值较低';
-  } else if (score <= 10) {
-    return '此题难度一般，分值适中';
-  } else if (score <= 20) {
-    return '此题较难，分值较高';
-  } else {
-    return '此题极难，分值很高';
-  }
-}; 
+}

@@ -4,14 +4,14 @@ import { useHistory, useParams } from 'react-router-dom';
 import DwSurveyStyleDesignAside from './components/DwSurveyStyleDesignAside';
 import DwAnswerDefaultLayout from '../../dw-answer-comp/dw-anaswer-survey-layouts/dw-answer-default-layout/DwAnswerDefaultLayout';
 import { getDesignSurveyJsonBySurveyId } from '../../dw-utils/dw-survey-common';
-import { initAnswerBySurvey, showPageByIndex } from '../../dw-utils/dw-survey-answer-data';
+import { initAnswerBySurvey, showPageByIndex } from '../../dw-utils/dw-survey-answer-data.ts';
 import { initAnswerSurveyProgress } from '../../dw-answer-comp/dw-utils/dw-survey-answer-progress.ts';
 import { getDefaultSurveyStyle } from '../../dw-utils/dw-common/dw-common-utils';
 import { clearSurveyJson, getSaveSurveyJsonText, getSurveyJsonSimple } from '../../dw-utils/dw-survey-design';
 import { clearSurveyAnswer } from '../../dw-answer-comp/dw-utils/dw-survey-answer-clear';
 import { dwSurveyAnswerLogicLoad } from '../../dw-answer-comp/dw-utils/dw-survey-answer-logic';
 import { surveyAnswerLocalStorage } from '../../dw-answer-comp/dw-utils/dw-survey-answer-utils.ts';
-import { dwFooterUtils } from '../../dw-utils/dw-common/dw-footer-util';
+import { dwFooterUtils } from '../../dw-utils/dw-common/dw-footer-util.ts';
 import { dwDevSurvey, dwSaveSurveyJson } from '../dw-design-survey-comp/api/dw-design-survey-api';
 
 interface Survey {

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Form, Input, Button, message } from 'antd';
 import type { FormInstance } from 'antd/es/form';
-import DwJsencrypt from '../../../utils/dw-jsencrypt';
+import DwJsencrypt from '@/utils/dw-jsencrypt';
 import { dwFooterUtils } from '../../dw-survey-comp/dw-utils/dw-common/dw-footer-util';
 
 interface LoginFormData {
@@ -30,7 +30,7 @@ const DwLoginPwd: React.FC<DwLoginPwdProps> = ({ onLogin }) => {
     onLogin({
       type: 'account',
       userName: formData.email,
-      password: passcode
+      password: passcode || ''
     });
   };
 
@@ -51,13 +51,13 @@ const DwLoginPwd: React.FC<DwLoginPwdProps> = ({ onLogin }) => {
 
   const loadDwFooter = () => {
     dwFooterUtils.getNewDwFooterInfo(() => {
-      dwFooterUtils.isDemo((footerInfo) => {
-        showDefaultDemoPwd(footerInfo);
+      dwFooterUtils.isDemo(() => {
+        showDefaultDemoPwd();
       });
     });
   };
 
-  const showDefaultDemoPwd = (footerInfo: any) => {
+  const showDefaultDemoPwd = () => {
     form.setFieldsValue({
       email: 'service@diaowen.net',
       pass: '123456'

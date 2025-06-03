@@ -1,0 +1,66 @@
+table,
+tbody,
+tr,
+th,
+td {
+  border-spacing: 0;
+  border: none;
+}
+
+table {
+  text-align: center;
+  border-spacing: 0;
+  width: 100%;
+  min-width: 100%;
+  max-width: none;
+  border-radius: 3px;
+}
+
+/* Alternate row colors */
+thead tr:nth-child(odd) {
+  background-color: white;
+}
+
+thead tr:nth-child(even) {
+  background-color: #d8d8d9;
+}
+
+.matrix-title-td {
+  padding: 10px 5px;
+  white-space: nowrap;
+}
+
+.dw-matrix-row-title-td {
+  padding: 10px 0;
+}
+
+/* Alternate row colors */
+tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f0f0f0;
+}
+
+tbody tr:last-child td {
+  border-bottom: 1px solid #e7e7e8;
+}
+
+.dw-display-flex {
+  display: flex;
+}
+
+.dw-qu-item-el-checkbox-radio {
+  cursor: pointer;
+  padding: 8px;
+  display: inline-block;
+}
+
+.dw-checked {
+  color: #1890ff;
+}
+
+.matrix-item {
+  min-width: 40px;
+}

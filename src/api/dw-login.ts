@@ -1,100 +1,74 @@
 import request from '@/utils/request'
-import { ApiEndpoints } from './endpoints'
-import DwAuthorized from '@/utils/auth'
-
-interface LoginParams {
-  userName: string
-  password: string
-  type?: string
-}
-
-interface RegisterParams {
-  userName: string
-  password: string
-  phone?: string
-  email?: string
-}
-
-interface SmsParams {
-  phone: string
-}
+import API from '@/api/index.js'
+import DwAuthorized from '../utils/dw-authorized'
 
 // 登录方法
-export function dwLogin(params: LoginParams) {
+export function dwLogin (params: any) {
+  // const params = {userName, password, type: 'account'}
   return request({
-    url: ApiEndpoints.LOGIN_IN,
+    url: API.loginIn,
     method: 'post',
     params
   })
 }
 
-// 密码登录
-export function dwLoginWithPassword(params: LoginParams) {
+export function wxLoginTicket (params: any) {
   return request({
-    url: ApiEndpoints.LOGIN_IN_PWD,
+    url: API.loginWxQrCode,
     method: 'post',
     params
   })
 }
 
-// 获取微信二维码
-export function wxLoginTicket() {
+export function wxLoginTicketStatus (params: any) {
   return request({
-    url: ApiEndpoints.LOGIN_WX_QR_CODE,
-    method: 'get'
-  })
-}
-
-// 检查微信登录状态
-export function wxLoginTicketStatus() {
-  return request({
-    url: ApiEndpoints.LOGIN_WX_STATUS,
-    method: 'get'
-  })
-}
-
-// 发送短信验证码
-export function sendFakeCaptcha(params: SmsParams) {
-  return request({
-    url: ApiEndpoints.LOGIN_SEND_SMS,
+    url: API.loginWxStatus,
     method: 'post',
     params
   })
 }
 
-// 注册
-export function dwRegister(params: RegisterParams) {
+export function sendFakeCaptcha (params: any) {
   return request({
-    url: ApiEndpoints.REGISTER,
+    url: API.loginSendSms,
     method: 'post',
     params
   })
 }
 
 // 退出方法
-export function logout() {
+export function logout () {
   // token方案
   DwAuthorized.setToken('')
   DwAuthorized.setAuthorityStr('')
   DwAuthorized.setUserName('')
   // session方案
   return request({
-    url: ApiEndpoints.LOGOUT,
+    url: API.logOut,
     method: 'post'
   })
 }
 
-// 获取问卷信息
-export function answerLoginSurveyInfo(sid: string) {
+// 登录方法
+export function dwRegister (params: any) {
+  // const params = {userName, password, type: 'account'}
   return request({
-    url: '/api/dwsurvey/anon/response/survey_info.do',
+    url: API.register,
     method: 'post',
-    params: { sid }
+    params
   })
 }
 
-// 验证码校验
-export function verifiedCaptchaCode(params: { code: string }) {
+export function answerLoginSurveyInfo (sid: string) {
+  const params = {sid}
+  return request({
+    url: '/api/dwsurvey/anon/response/survey_info.do',
+    method: 'post',
+    params
+  })
+}
+
+export function verifiedCaptchaCode (params: any) {
   return request({
     url: '/api/dwsurvey/anon/jcap/jcaptcha-check.do',
     method: 'post',
@@ -102,10 +76,10 @@ export function verifiedCaptchaCode(params: { code: string }) {
   })
 }
 
-// 获取登录属性
-export function loginProps() {
+export function loginProps () {
   return request({
     url: '/api/dwsurvey/anon/security/login-props.do',
     method: 'get'
   })
-} 
+}
+

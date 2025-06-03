@@ -1,0 +1,13 @@
+.dw-footer-main {
+  text-align: center;
+  font-size: 12px;
+  color: grey;
+  line-height: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.dw-footer-main a {
+  text-decoration: none;
+  color: grey;
+} 

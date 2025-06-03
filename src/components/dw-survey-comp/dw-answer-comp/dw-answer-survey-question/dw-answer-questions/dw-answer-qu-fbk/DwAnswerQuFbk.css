@@ -1,0 +1,43 @@
+.dw-qu-item {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+@media (max-width: 768px) {
+  .ant-picker-range .ant-picker-panel {
+    min-width: 100%;
+  }
+
+  .ant-picker-panels {
+    width: 100% !important;
+  }
+
+  .ant-picker-range {
+    width: 80% !important;
+  }
+
+  .ant-picker-panel {
+    margin: 0;
+    padding: 5px;
+  }
+
+  .ant-picker-panel:first-child {
+    padding-bottom: 0;
+  }
+
+  .ant-picker-panel:last-child {
+    padding-top: 0;
+  }
+
+  .ant-picker-cell {
+    padding: 0;
+  }
+
+  .ant-picker-cell-inner {
+    padding: 0;
+  }
+
+  .ant-picker {
+    width: 100%;
+  }
+}

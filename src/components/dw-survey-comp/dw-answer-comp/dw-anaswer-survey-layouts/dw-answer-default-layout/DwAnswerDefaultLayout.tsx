@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Container, Main, Progress } from 'element-plus-react';
+import { Row, Col, Layout, Progress } from 'antd';
 import DwAnswerSurveyBody from '../../dw-answer-survey-body/DwAnswerSurveyBody';
 import DwFooterSm from '../../../../layouts/DwFooterSm';
 import { surveyAnswerLocalStorage } from '../../dw-utils/dw-survey-answer-utils';
 import './DwAnswerDefaultLayout.css';
+
+const { Content } = Layout;
 
 interface Survey {
   showSurvey?: boolean;
@@ -68,20 +70,20 @@ const DwAnswerDefaultLayout: React.FC<DwAnswerDefaultLayoutProps> = ({ survey, e
     <div style={anBodyStyle} className="dw-answer-container">
       <Row>
         <Col xs={anBodySpan.xs} sm={anBodySpan.sm} md={anBodySpan.md} lg={anBodySpan.lg} xl={anBodySpan.xl}>
-          <Container>
+          <Content>
             {survey?.showSurvey && (
-              <Main style={{ padding: '10px' }}>
+              <div style={{ padding: '10px' }}>
                 <div>
                   <div>
                     <div className="dw-container-body">
                       {survey?.surveyStyle?.showProgressbar && (
                         <div style={dwElProgressStyle} className="dw-survey-answer-progress">
                           <Progress
-                            showText={false}
+                            showInfo={false}
                             strokeWidth={3}
-                            percentage={survey?.answerProgress ? parseFloat(survey.answerProgress.percentage) : 0}
-                            color={survey.surveyStyle.progressColor}
-                            defineBackColor="#dcdfe6"
+                            percent={survey?.answerProgress ? parseFloat(survey.answerProgress.percentage) : 0}
+                            strokeColor={survey.surveyStyle.progressColor}
+                            trailColor="#dcdfe6"
                           />
                         </div>
                       )}
@@ -92,9 +94,9 @@ const DwAnswerDefaultLayout: React.FC<DwAnswerDefaultLayoutProps> = ({ survey, e
                 <div>
                   <DwFooterSm />
                 </div>
-              </Main>
+              </div>
             )}
-          </Container>
+          </Content>
         </Col>
       </Row>
     </div>
