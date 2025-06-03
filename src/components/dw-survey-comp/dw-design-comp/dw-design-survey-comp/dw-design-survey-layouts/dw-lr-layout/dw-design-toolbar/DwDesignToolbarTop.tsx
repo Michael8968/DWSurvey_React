@@ -26,7 +26,7 @@ const DwDesignToolbarTop: React.FC<Props> = ({ survey }) => {
     if (isAutoSave) {
       startIntervalSaveSurvey();
     }
-    dwFooterUtils.isLayoutLr((footerInfo) => setPrevPath('/v6/lr'));
+    dwFooterUtils.isLayoutLr((footerInfo: any) => setPrevPath(footerInfo.prevPath), () => setPrevPath('/v6/lr'));
     return () => {
       stopIntervalSaveSurvey();
     };
@@ -34,7 +34,7 @@ const DwDesignToolbarTop: React.FC<Props> = ({ survey }) => {
 
   const startIntervalSaveSurvey = () => {
     const intervalId = setInterval(() => {
-      saveSurveyFun(null);
+      saveSurveyFun(() => {});
       setAutoSaveTime(20);
     }, 20000);
 
@@ -60,7 +60,7 @@ const DwDesignToolbarTop: React.FC<Props> = ({ survey }) => {
   };
 
   const saveSurvey = () => {
-    saveSurveyFun(null);
+    saveSurveyFun(() => {});
   };
 
   const devSurvey = () => {

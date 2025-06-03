@@ -73,11 +73,12 @@ const DwTextEditLabelCommon: React.FC<Props> = ({ value, survey, index, onUpdate
   return (
     <div onClick={clickItem} onMouseOver={mouseoverItem} onMouseLeave={mouseleaveItem}>
       <DwTextEditLabel
-        ref={curEditLabelRef}
+        ref={(ref: any) => (curEditLabelRef.current = ref)}
         value={value}
         itemStatus={itemStatus}
         onUpItemClick={upItemClick}
         onUpValue={upValue}
+        onUpdateInput={onUpdateInput}
       />
     </div>
   );

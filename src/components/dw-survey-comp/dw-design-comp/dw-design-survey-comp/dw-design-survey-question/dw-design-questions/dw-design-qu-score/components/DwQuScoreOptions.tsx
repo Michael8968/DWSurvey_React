@@ -22,10 +22,11 @@ const DwQuScoreOptions: React.FC<Props> = ({
   return (
     <div>
       <DwQuOptionCommon2
-        survey={survey}
+        survey={survey as any}
         index={index}
         quType={survey.questions[index].quType}
-        onChange={onChange}
+        onUpdateOptions={onChange as any}
+        options={survey.questions[index].quScores as any}
       />
     </div>
   );

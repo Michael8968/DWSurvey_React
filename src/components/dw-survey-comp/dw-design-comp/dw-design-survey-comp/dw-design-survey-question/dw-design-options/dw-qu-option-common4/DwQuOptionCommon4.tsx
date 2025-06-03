@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Select } from 'element-react';
+import { Select } from 'antd';
 
 interface OptionTitleObj {
   dwText: string;
@@ -29,7 +29,7 @@ const DwQuOptionCommon4: React.FC<Props> = ({ index, options, survey, quType, on
     <div>
       <Select
         value={value}
-        multiple={quType === 'CHECKBOX'}
+        mode={quType === 'CHECKBOX' ? 'multiple' : undefined}
         placeholder="请选择"
         onChange={handleChange}
       >
@@ -38,7 +38,9 @@ const DwQuOptionCommon4: React.FC<Props> = ({ index, options, survey, quType, on
             key={`fa_${optionIndex}`}
             label={item.optionTitleObj.dwHtml}
             value={item.optionTitleObj.dwHtml}
-          />
+          >
+            {item.optionTitleObj.dwHtml}
+          </Select.Option>
         ))}
       </Select>
     </div>

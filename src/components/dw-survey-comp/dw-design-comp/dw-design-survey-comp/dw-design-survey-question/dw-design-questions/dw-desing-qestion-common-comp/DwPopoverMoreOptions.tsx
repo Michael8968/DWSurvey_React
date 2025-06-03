@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Popover, Input, Button } from 'element-react';
+import { Popover, Input, Button } from 'antd';
 import { v4 as uuidV4 } from 'uuid';
 import {
   dwOption2Texts,
@@ -144,21 +144,18 @@ const DwPopoverMoreOptions: React.FC<Props> = ({
 
   return (
     <Popover
-      value={getPopoverVisible()}
-      trigger="manual"
-      placement="bottom-start"
-      width={300}
-      popperClass="dw-popover-more-options"
-      onShow={showPopoverLoad}
+      visible={getPopoverVisible()}
+      trigger="click"
+      placement="bottomLeft"
+      onOpenChange={showPopoverLoad}
     >
       <div>
         <div style={{ fontSize: '14px', paddingBottom: '5px' }}>{popoverTitle}</div>
-        <Input
-          type="textarea"
+        <Input.TextArea
           value={moreOptionText}
           placeholder={textPlaceholder}
-          rows={10}
-          onChange={(val) => setMoreOptionText(val)}
+          autoSize={{ minRows: 10 }}
+          onChange={(e) => setMoreOptionText(e.target.value)}
         />
         <div style={{ textAlign: 'right' }}>
           <span style={{ fontSize: '13px', marginRight: '5px', color: 'darkgrey' }}>

@@ -48,7 +48,7 @@ const DwDesignContainerBodyLeft: React.FC<Props> = ({ survey, lrContentHeight })
         {survey.designLayout === 'LR' && (
           <TabPane tab="题型" key="questionTypes">
             <div style={{ height: `${lrContentHeight}px`, overflowY: 'scroll' }} className="scrollable-hidden scrollable-y">
-              <DwDesignToolbarLeft survey={survey} />
+              <DwDesignToolbarLeft survey={survey as any} />
             </div>
           </TabPane>
         )}

@@ -7,10 +7,8 @@ import {
 } from 'antd';
 import { 
   EyeOutlined, DeleteOutlined, 
-  ExportOutlined, ReloadOutlined 
 } from '@ant-design/icons';
-import type { RangePickerProps } from 'antd/es/date-picker';
-import type { TableColumnsType } from 'antd/es/table';
+import type { ColumnsType } from 'antd/es/table';
 import { dwSurveyAnswerDeleteByEs } from '@/api/dw-survey';
 import {
   dwSurveyAnswerExportLogInfo,
@@ -125,7 +123,7 @@ const DwSurveyAnswerDataList: React.FC<Props> = ({ survey }) => {
     };
 
     try {
-      const response = await dwSurveyAnswerListV6(params);
+      const response: any = await dwSurveyAnswerListV6(params as any);
       const page: PageData = response.data;
       setPageSize(page.pageSize);
       setCurrentPage(page.pageNo);
@@ -182,14 +180,14 @@ const DwSurveyAnswerDataList: React.FC<Props> = ({ survey }) => {
 
     try {
       const response = await dwSurveyAnswerExportSync(params);
-      const httpResult = response.data;
+      const httpResult: any = response.data;
       if (httpResult.resultCode === 200) {
         const resultData = httpResult.data;
         setExportLogId(resultData.id);
         setPercentage(0);
         exportProgress();
       } else {
-        message.error(`导出出错${httpResult.resultMsg}`);
+        message.error(`导出出错: ${httpResult.resultMsg}`);
       }
     } catch (error) {
       message.error('导出失败');
@@ -243,7 +241,7 @@ const DwSurveyAnswerDataList: React.FC<Props> = ({ survey }) => {
     setDialogFormVisible(false);
   };
 
-  const columns: TableColumnsType<TableItem> = [
+  const columns: ColumnsType<TableItem> = [
     {
       title: '序号',
       width: 65,
@@ -278,7 +276,7 @@ const DwSurveyAnswerDataList: React.FC<Props> = ({ survey }) => {
     },
     ...(survey && ((survey.surveyType === 'exam') || (survey.surveyAttrs?.scoreAttr.enabled)) ? [{
       title: '分数',
-      render: (record) => {
+      render: (record: any) => {
         const sumScore = record.answerCommon.sumScore;
         return `${sumScore != null ? sumScore : 0} 分`;
       }

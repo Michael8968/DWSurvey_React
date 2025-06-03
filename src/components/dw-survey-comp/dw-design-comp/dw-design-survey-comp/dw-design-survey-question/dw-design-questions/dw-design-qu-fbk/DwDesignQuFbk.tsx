@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input } from 'element-react';
+import { Input } from 'antd';
 import './DwDesignQuFbk.scss';
 
 interface Question {
@@ -28,18 +28,17 @@ const DwDesignQuFbk: React.FC<Props> = ({ index, survey, onUpdateSurvey }) => {
   return (
     <div style={{ padding: '10px 0' }} className="dw-qu-item">
       {question.answerInputRow > 1 ? (
-        <Input
-          type="textarea"
+        <Input.TextArea
           value={inputText}
           placeholder={question.placeholder}
-          autosize={{ minRows: question.answerInputRow }}
-          onChange={handleInputChange}
+          autoSize={{ minRows: question.answerInputRow }}
+          onChange={(e) => handleInputChange(e.target.value)}
         />
       ) : (
         <Input
           value={inputText}
           placeholder={question.placeholder}
-          onChange={handleInputChange}
+          onChange={(e) => handleInputChange(e.target.value)}
         />
       )}
     </div>

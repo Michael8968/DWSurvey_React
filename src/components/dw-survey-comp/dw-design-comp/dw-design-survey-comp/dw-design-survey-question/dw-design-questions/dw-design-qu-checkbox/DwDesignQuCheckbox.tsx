@@ -16,10 +16,9 @@ const DwDesignQuCheckbox: React.FC<Props> = ({ index, survey, onUpdateSurvey }) 
 
   return (
     <DwQuCheckboxOptions
-      ref={dwQuestionRef}
-      value={survey}
+      survey={survey}
       index={index}
-      onChange={onUpdateSurvey}
+      onSurveyChange={onUpdateSurvey}
     />
   );
 };

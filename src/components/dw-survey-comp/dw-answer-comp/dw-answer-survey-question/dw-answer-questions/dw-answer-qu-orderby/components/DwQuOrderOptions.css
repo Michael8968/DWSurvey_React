@@ -1,0 +1,32 @@
+.dw-qu-order-group {
+  margin-bottom: 5px;
+}
+.dw-qu-order-group .dw-qu-order-group-item {
+  border: 1px solid #efefef;
+  background: white;
+  /*margin-bottom: -1px;*/
+  margin-bottom: 5px;
+  border-radius: 2px;
+}
+.dw-qu-item-body-order-option {
+  /*display: inline-flex;*/
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 3px 5px;
+}
+.dw-qu-order-num {
+  border: 1px solid #ccc;
+  font-size: 10px;
+  padding: 3px 5px;
+  margin-right: 5px;
+  font-family: "Antic", "Tahoma", serif;
+  border-radius: 3px;
+}
+.dw-qu-order-num.dw-num-empty {
+  color: white;
+  background: white;
+}
+.flip-list-move {
+  transition: transform 0.5s;
+}

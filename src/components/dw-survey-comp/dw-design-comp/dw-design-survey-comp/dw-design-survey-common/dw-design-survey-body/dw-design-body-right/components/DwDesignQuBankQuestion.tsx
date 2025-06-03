@@ -15,7 +15,7 @@ interface Props {
 const DwDesignQuBankQuestion: React.FC<Props> = ({ item }) => {
   return (
     <div>
-      <DwDesignQuestionModelCommon item={item}>
+      <DwDesignQuestionModelCommon item={item as any}>
         <div className="dw-list-group-item-content qu-bank-question-content">
           {item.hasOwnProperty('dwQuIcon') && item.dwQuIcon !== null && item.dwQuIcon !== undefined ? (
             <div className="dw-list-group-item-in">

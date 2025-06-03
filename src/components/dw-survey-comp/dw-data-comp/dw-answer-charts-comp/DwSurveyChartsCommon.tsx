@@ -176,7 +176,7 @@ const DwSurveyChartsCommon: React.FC<DwSurveyChartsCommonProps> = ({ question, i
             percent={parseFloat(record.percent)}
             strokeWidth={26}
             showInfo={true}
-            textColor="white"
+            strokeColor="white"
           />
         )
       }
@@ -242,7 +242,7 @@ const DwSurveyChartsCommon: React.FC<DwSurveyChartsCommonProps> = ({ question, i
                       percent={parseFloat(record.percent)}
                       strokeWidth={26}
                       showInfo={true}
-                      textColor="white"
+                      strokeColor="white"
                     />
                   )
                 },

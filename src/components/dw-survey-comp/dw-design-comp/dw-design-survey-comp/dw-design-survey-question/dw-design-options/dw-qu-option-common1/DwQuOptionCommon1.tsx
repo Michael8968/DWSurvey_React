@@ -89,12 +89,14 @@ const DwQuOptionCommon1: React.FC<Props> = ({ index, options, survey, quType, on
                     >
                       <DwQuOptionCommon1Item
                         ref={(el) => (itemRefs.current[optionIndex] = el)}
-                        value={dragOptions}
-                        survey={survey}
+                        options={dragOptions as any[]}
+                        survey={survey as any}
                         quIndex={index}
                         optionIndex={optionIndex}
                         quType={quType}
                         onRefreshOptions={refreshOptions}
+                        value={dragOptions as any[]}
+                        onUpdateOptions={onUpdateOptions}
                       />
                     </div>
                   )}

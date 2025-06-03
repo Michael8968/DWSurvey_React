@@ -13,11 +13,7 @@ interface Props {
   onChange?: (survey: Survey) => void;
 }
 
-const DwDesignQuMatrixSlider: React.FC<Props> = ({
-  index,
-  survey,
-  onChange
-}) => {
+const DwDesignQuMatrixSlider: React.FC<Props> = () => {
   return (
     <div>
     </div>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Button, ButtonGroup, Slider } from 'element-react';
+import { Button, Slider } from 'antd';
 import DwRowOptionCommon2Item from './components/DwRowOptionCommon2Item';
 import { generateNumbers } from '../../../../../../../dw-utils/dw-common/dw-common-utils';
 import './DwQuMatrixOptionCommon2.scss';
+
+const ButtonGroup = Button.Group;
 
 interface Survey {
   questions: Array<{
@@ -115,30 +117,30 @@ const DwQuMatrixOptionCommon2: React.FC<Props> = ({
           <div className="dw-display-flex" style={{ justifyContent: 'space-between', color: 'grey' }}>
             <div>
               <DwRowOptionCommon2Item
-                value={dragOptions}
+                value={dragOptions as any}
                 survey={survey}
                 quIndex={index}
                 optionIndex={rowOptionIndex}
                 quType={quType}
                 valueType="left"
                 onChange={(newValue) => {
-                  setDragOptions(newValue);
-                  onChange?.(newValue);
+                  setDragOptions(newValue as any);
+                  onChange?.(newValue as any);
                 }}
                 onRefreshOptions={handleRefreshOptions}
               />
             </div>
             <div>
               <DwRowOptionCommon2Item
-                value={dragOptions}
-                survey={survey}
+                value={dragOptions as any}
+                survey={survey as any}
                 quIndex={index}
                 optionIndex={rowOptionIndex}
                 quType={quType}
                 valueType="right"
                 onChange={(newValue) => {
-                  setDragOptions(newValue);
-                  onChange?.(newValue);
+                  setDragOptions(newValue as any);
+                  onChange?.(newValue as any);
                 }}
                 onRefreshOptions={handleRefreshOptions}
               />
@@ -161,15 +163,15 @@ const DwQuMatrixOptionCommon2: React.FC<Props> = ({
                     <tr>
                       <td>
                         <DwRowOptionCommon2Item
-                          value={dragOptions}
-                          survey={survey}
+                          value={dragOptions as any}
+                          survey={survey as any}
                           quIndex={index}
                           optionIndex={rowOptionIndex}
                           quType={quType}
                           valueType="row"
                           onChange={(newValue) => {
-                            setDragOptions(newValue);
-                            onChange?.(newValue);
+                            setDragOptions(newValue as any);
+                            onChange?.(newValue as any);
                           }}
                           onRefreshOptions={handleRefreshOptions}
                         />

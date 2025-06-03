@@ -84,7 +84,7 @@ const DwColOptionCommon1: React.FC<Props> = ({
                     >
                       {optionIndex > 0 && (
                         <DwColOptionCommon1Item
-                          value={dragOptions}
+                          value={dragOptions as any}
                           survey={survey}
                           quIndex={index}
                           optionIndex={optionIndex}

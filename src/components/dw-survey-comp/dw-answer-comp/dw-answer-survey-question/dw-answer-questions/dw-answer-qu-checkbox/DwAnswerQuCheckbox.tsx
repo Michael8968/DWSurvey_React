@@ -5,15 +5,15 @@ interface DwAnswerQuCheckboxProps {
   index: number;
   survey: any;
   answer: any;
-  onSurveyChange: (survey: any) => void;
+  onUpdateOptions: (survey: any) => void;
 }
 
-const DwAnswerQuCheckbox: React.FC<DwAnswerQuCheckboxProps> = ({ index = 0, survey = {}, answer = {}, onSurveyChange }) => {
+const DwAnswerQuCheckbox: React.FC<DwAnswerQuCheckboxProps> = ({ index = 0, survey = {}, answer = {}, onUpdateOptions }) => {
 
   return (
     <DwQuCheckboxOptions
       survey={survey}
-      onSurveyChange={onSurveyChange}
+      onSurveyChange={onUpdateOptions}
       index={index}
       answer={answer}
     />

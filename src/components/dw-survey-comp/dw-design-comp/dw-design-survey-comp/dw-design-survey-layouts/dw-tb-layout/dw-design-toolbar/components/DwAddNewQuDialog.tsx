@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
 import { Modal, Tabs, Row, Col, Button, Spin } from 'antd';
 import { questionComps } from '../../../../api/dw-design-survey-api';
 import { initQuestionModels, parseQuestions, resetQuestion } from '../../../../../../dw-utils/dw-survey-parse';
@@ -31,10 +31,14 @@ interface Props {
   survey: Survey;
 }
 
-const DwAddNewQuDialog: React.FC<Props> = ({ survey }) => {
+const DwAddNewQuDialog = forwardRef<any, Props>(({ survey }, ref) => {
   const [tabs, setTabs] = useState<Tab[]>([]);
   const [loading, setLoading] = useState(true);
   const [dialogVisible, setDialogVisible] = useState(false);
+
+  useImperativeHandle(ref, () => ({
+    openDialog: () => setDialogVisible(true)
+  }));
 
   useEffect(() => {
     loadDesignSurveyData();
@@ -58,10 +62,6 @@ const DwAddNewQuDialog: React.FC<Props> = ({ survey }) => {
       console.error('Failed to load question components:', error);
       setLoading(false);
     }
-  };
-
-  const openDialog = () => {
-    setDialogVisible(true);
   };
 
   const clickToolbarItem = (item: Question) => {
@@ -115,7 +115,7 @@ const DwAddNewQuDialog: React.FC<Props> = ({ survey }) => {
                                         className="toolbar-item"
                                         onClick={() => clickToolbarItem(quItem)}
                                       >
-                                        <DwDesignToolbarQuestion item={quItem} />
+                                        <DwDesignToolbarQuestion item={quItem as any} />
                                       </div>
                                     ))}
                                   </div>
@@ -135,6 +135,6 @@ const DwAddNewQuDialog: React.FC<Props> = ({ survey }) => {
       </Spin>
     </Modal>
   );
-};
+});
 
 export default DwAddNewQuDialog; 

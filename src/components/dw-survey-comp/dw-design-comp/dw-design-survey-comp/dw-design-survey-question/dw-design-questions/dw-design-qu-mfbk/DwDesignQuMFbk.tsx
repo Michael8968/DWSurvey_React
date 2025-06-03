@@ -21,9 +21,9 @@ const DwDesignQuMFbk: React.FC<Props> = ({
 }) => {
   return (
     <DwQuMFbkOptions
-      survey={survey}
+      survey={survey as any}
       index={index}
-      onChange={onChange}
+      onSurveyChange={onChange as any}
     />
   );
 };

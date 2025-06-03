@@ -22,7 +22,7 @@ const DwDesignQuMatrixCheckbox: React.FC<Props> = ({
   return (
     <div>
       <DwQuMatrixOptionCommon1
-        survey={survey}
+        survey={survey as any}
         index={index}
         onChange={onChange}
       />

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { v4 as uuidV4 } from 'uuid';
-import { Tooltip } from 'element-react';
+import { Tooltip } from 'antd';
 import DwColOptionCommon1 from './components/DwColOptionCommon1';
 import DwRowOptionCommon1 from './components/DwRowOptionCommon1';
 import DwPopoverMoreOptions from '../../../dw-desing-qestion-common-comp/DwPopoverMoreOptions';
@@ -43,7 +43,7 @@ const DwQuMatrixOptionCommon1: React.FC<Props> = ({
   const openDelay = 300;
 
   const handleAddQuItem = () => {
-    const quOption = {
+    const quOption: any = {
       id: null,
       optionTitleObj: {
         dwHtml: '选项内容',
@@ -122,7 +122,7 @@ const DwQuMatrixOptionCommon1: React.FC<Props> = ({
                 />
                 <DwRowOptionCommon1
                   value={survey.questions[index].quRows}
-                  survey={survey}
+                  survey={survey as any}
                   index={index}
                   quType={survey.questions[index].quType}
                   onChange={(value) => {
@@ -137,9 +137,7 @@ const DwQuMatrixOptionCommon1: React.FC<Props> = ({
         </div>
         <div className="dw-text-align-center" style={{ width: '50px' }}>
           <Tooltip
-            openDelay={openDelay}
-            effect="dark"
-            content="增加新列"
+            title="增加新列"
             placement="right"
           >
             <div 
@@ -154,11 +152,10 @@ const DwQuMatrixOptionCommon1: React.FC<Props> = ({
             index={index}
             addOrEdit="addCol"
             onClickItem={handleClickItem}
+            onChange={onChange as any}
           >
             <Tooltip
-              openDelay={openDelay}
-              effect="dark"
-              content="批量增加"
+              title="批量增加"
               placement="right"
             >
               <div className="dw-question-toolbar dw-margin-bottom-10">

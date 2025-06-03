@@ -33,7 +33,7 @@ const DwQuRadioOptions: React.FC<Props> = ({ value, index, onChange }) => {
       {question.hv === 1 && (
         <DwQuOptionCommon1
           options={question.quRadios}
-          survey={value}
+          survey={value as any}
           index={index}
           quType={question.quType}
           onUpdateOptions={updateOptions}
@@ -41,8 +41,8 @@ const DwQuRadioOptions: React.FC<Props> = ({ value, index, onChange }) => {
       )}
       {question.hv === 2 && (
         <DwQuOptionCommon2
-          options={question.quRadios}
-          survey={value}
+          options={question.quRadios as any}
+          survey={value as any}
           index={index}
           quType={question.quType}
           onUpdateOptions={updateOptions}

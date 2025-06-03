@@ -1,0 +1,86 @@
+.dwEditor {
+  width: 100%;
+  font-size: 14px;
+  line-height: 28px;
+  outline-style: none;
+}
+
+.dw-input-default {
+  border: 1px solid transparent;
+}
+
+.dw-qu-option-text {
+  padding: 6px;
+  word-break: break-word;
+  outline: none;
+  line-height: 20px;
+}
+
+.dw-input-default:empty::before {
+  content: attr(placeholder);
+  color: lightgrey;
+}
+
+.dw-input-focus {
+  border: 1px solid #095aaa !important;
+  background: #dde6fa;
+  outline-width: 1px;
+  border: 1px solid var(--dw-primary-button-toolbar-theme-color) !important;
+}
+
+.dw-input-hover {
+  background: #dde6fa;
+  border: 1px dashed #095aaa;
+  border: 1px dashed var(--dw-primary-button-toolbar-theme-color) !important;
+}
+
+.dw-edit-toolbar {
+  width: 40px;
+}
+
+.edit-dialog-root .ant-modal-header {
+  padding: 10px;
+}
+
+.edit-dialog-root .ant-modal-body {
+  padding: 0px;
+}
+
+.edit-dialog-root .ant-modal-close {
+  top: 13px;
+}
+
+.dwEditorRoot p,
+.dwEditorRoot video,
+.dwEditorRoot img {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.dw-width-100bf {
+  width: 100%;
+}
+
+.dw-flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.dw-flex-item-auto {
+  flex: 1 1 auto;
+}
+
+.dw-border-blue {
+  border-color: #1890ff;
+}
+
+.dw-btn-blue-1 {
+  color: #1890ff;
+  border-color: #1890ff;
+}
+
+.dw-cursor-pointer {
+  cursor: pointer;
+}

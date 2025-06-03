@@ -12,23 +12,22 @@ import {dwSurveyAnswerLogic} from './dw-survey-answer-logic.ts'
  * @param successCallback
  * @param noJsonCallback
  */
-export function getSurveyAnswerJsonBySurveyId (params: any, successCallback: any, noJsonCallback: any) {
+export const getSurveyAnswerJsonBySurveyId = async (params: any, successCallback: any, noJsonCallback: any) => {
   // 先看看有没有JSON，有就取JSON数据。没有再取原来的Survey结构数据进行转换
-  dwSurveyJsonBySurveyId(params).then((response) => {
-    const httpResult = response.data
-    if (httpResult.resultCode === 200) {
-      const surveyAnswerResult = httpResult.data
-      if (surveyAnswerResult.hasOwnProperty('answerCheckResult') && surveyAnswerResult.hasOwnProperty('surveyJson')) {
-        const answerCheckResult = surveyAnswerResult.answerCheckResult
-        const surveyJson = surveyAnswerResult.surveyJson
-        if (surveyJson!==null && surveyJson.hasOwnProperty('surveyJsonText') && surveyJson.surveyJsonText !== null && surveyJson.surveyJsonText!=='') {
-          successCallback(parseSurvey(JSON.parse(surveyJson.surveyJsonText)), answerCheckResult)
-        } else {
-          noJsonCallback(answerCheckResult)
-        }
+  const response = await dwSurveyJsonBySurveyId(params)
+  const httpResult = response.data
+  if (httpResult.resultCode === 200) {
+    const surveyAnswerResult = httpResult.data
+    if (surveyAnswerResult.hasOwnProperty('answerCheckResult') && surveyAnswerResult.hasOwnProperty('surveyJson')) {
+      const answerCheckResult = surveyAnswerResult.answerCheckResult
+      const surveyJson = surveyAnswerResult.surveyJson
+      if (surveyJson!==null && surveyJson.hasOwnProperty('surveyJsonText') && surveyJson.surveyJsonText !== null && surveyJson.surveyJsonText!=='') {
+        successCallback(parseSurvey(JSON.parse(surveyJson.surveyJsonText)), answerCheckResult)
+      } else {
+        noJsonCallback(answerCheckResult)
       }
     }
-  })
+  }
 }
 
 export function answerQuEventCommon (survey: any, quIndex: any) {

@@ -5,7 +5,7 @@ import { questionComps, dwSaveSurveyJson } from '../../../../api/dw-design-surve
 import { initQuestionModels, parseQuestions, resetQuestion } from '../../../../../../dw-utils/dw-survey-parse';
 import { clearSurveyJson, getSaveSurveyJsonText, getSurveyJsonSimple } from '../../../../../../dw-utils/dw-survey-design';
 import { dwResetQuestionRefreshValue } from '../../../../../../dw-utils/dw-survey-update-question';
-import DwDesignQuBankQuestion from '../dw-design-body-right/components/DwDesignQuBankQuestion';
+import DwDesignQuBankQuestion from '../../dw-design-body-right/components/DwDesignQuBankQuestion';
 
 const { Panel } = Collapse;
 
@@ -96,7 +96,7 @@ const DwDesignToolbarLeft: React.FC<Props> = ({ survey, onStartDrag, onEndDrag }
 
   const startIntervalSaveSurvey = () => {
     const intervalId = setInterval(() => {
-      saveSurveyFun(null);
+      saveSurveyFun(() => {});
       setAutoSaveTime(20);
     }, 20000);
 
@@ -178,7 +178,7 @@ const DwDesignToolbarLeft: React.FC<Props> = ({ survey, onStartDrag, onEndDrag }
                                         className="dw-list-group-item"
                                         onClick={() => clickToolbarItem(quItem)}
                                       >
-                                        <DwDesignQuBankQuestion item={quItem} />
+                                        <DwDesignQuBankQuestion item={quItem as any} />
                                       </div>
                                     )}
                                   </Draggable>

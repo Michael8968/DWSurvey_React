@@ -77,7 +77,7 @@ const DwDesignQuestionModelCommon: React.FC<Props> = ({
           {quModelTagDwsurveyfont}
           <div className="cloneQuRoot">
             <div>
-              <DwAnswerQuestion survey={survey} index={0} item={item} />
+              <DwAnswerQuestion index={0} item={item} survey={survey as any} answer={null} onChange={() => {}} />
             </div>
           </div>
         </>
@@ -91,7 +91,7 @@ const DwDesignQuestionModelCommon: React.FC<Props> = ({
             {quModelTagXialati}
             <div className="cloneQuRoot">
               <div>
-                <DwAnswerQuestion survey={survey} index={0} item={item} />
+                <DwAnswerQuestion index={0} item={item} survey={survey as any} answer={null} onChange={() => {}} />
               </div>
             </div>
           </>
@@ -100,7 +100,7 @@ const DwDesignQuestionModelCommon: React.FC<Props> = ({
             {quModelTagDanxuan}
             <div className="cloneQuRoot">
               <div>
-                <DwAnswerQuestion survey={survey} index={0} item={item} />
+                <DwAnswerQuestion index={0} item={item} survey={survey as any} answer={null} onChange={() => {}} />
               </div>
             </div>
           </>
@@ -111,7 +111,7 @@ const DwDesignQuestionModelCommon: React.FC<Props> = ({
             {quModelTagDuoxuan}
             <div className="cloneQuRoot">
               <div>
-                <DwAnswerQuestion survey={survey} index={0} item={item} />
+                <DwAnswerQuestion index={0} item={item} survey={survey as any} answer={null} onChange={() => {}} />
               </div>
             </div>
           </>
@@ -122,7 +122,7 @@ const DwDesignQuestionModelCommon: React.FC<Props> = ({
             {quModelTagDuoxiangwenben}
             <div className="cloneQuRoot">
               <div>
-                <DwAnswerQuestion survey={survey} index={0} item={item} />
+                <DwAnswerQuestion index={0} item={item} survey={survey as any} answer={null} onChange={() => {}} />
               </div>
             </div>
           </>
@@ -131,7 +131,7 @@ const DwDesignQuestionModelCommon: React.FC<Props> = ({
             {quModelTagTiankong}
             <div className="cloneQuRoot">
               <div>
-                <DwAnswerQuestion survey={survey} index={0} item={item} />
+                <DwAnswerQuestion index={0} item={item} survey={survey as any} answer={null} onChange={() => {}} />
               </div>
             </div>
           </>
@@ -142,7 +142,7 @@ const DwDesignQuestionModelCommon: React.FC<Props> = ({
             {quModelTagPingfen}
             <div className="cloneQuRoot">
               <div>
-                <DwAnswerQuestion survey={survey} index={0} item={item} />
+                <DwAnswerQuestion index={0} item={item} survey={survey as any} answer={null} onChange={() => {}} />
               </div>
             </div>
           </>
@@ -153,7 +153,7 @@ const DwDesignQuestionModelCommon: React.FC<Props> = ({
             {quModelTagPaixu}
             <div className="cloneQuRoot">
               <div>
-                <DwAnswerQuestion survey={survey} index={0} item={item} />
+                <DwAnswerQuestion index={0} item={item} survey={survey as any} answer={null} onChange={() => {}} />
               </div>
             </div>
           </>
@@ -164,7 +164,7 @@ const DwDesignQuestionModelCommon: React.FC<Props> = ({
             {quModelTagDuoxiangtiankong}
             <div className="cloneQuRoot">
               <div>
-                <DwAnswerQuestion survey={survey} index={0} item={item} />
+                <DwAnswerQuestion index={0} item={item} survey={survey as any} answer={null} onChange={() => {}} />
               </div>
             </div>
           </>
@@ -175,7 +175,7 @@ const DwDesignQuestionModelCommon: React.FC<Props> = ({
             {quModelTagShangchuan}
             <div className="cloneQuRoot">
               <div>
-                <DwAnswerQuestion survey={survey} index={0} item={item} />
+                <DwAnswerQuestion index={0} item={item} survey={survey as any} answer={null} onChange={() => {}} />
               </div>
             </div>
           </>
@@ -186,7 +186,7 @@ const DwDesignQuestionModelCommon: React.FC<Props> = ({
             {quModelTagFenye}
             <div className="cloneQuRoot">
               <div>
-                <DwAnswerQuestion survey={survey} index={0} item={item} />
+                <DwAnswerQuestion index={0} item={item} survey={survey as any} answer={null} onChange={() => {}} />
               </div>
             </div>
           </>
@@ -197,7 +197,7 @@ const DwDesignQuestionModelCommon: React.FC<Props> = ({
             {quModelTagFenduan}
             <div className="cloneQuRoot">
               <div>
-                <DwAnswerQuestion survey={survey} index={0} item={item} />
+                <DwAnswerQuestion index={0} item={item} survey={survey as any} answer={null} onChange={() => {}} />
               </div>
             </div>
           </>
@@ -212,7 +212,7 @@ const DwDesignQuestionModelCommon: React.FC<Props> = ({
             )}
             <div className="cloneQuRoot">
               <div>
-                <DwAnswerQuestion survey={survey} index={0} item={item} />
+                <DwAnswerQuestion index={0} item={item} survey={survey as any} answer={null} onChange={() => {}} />
               </div>
             </div>
           </>

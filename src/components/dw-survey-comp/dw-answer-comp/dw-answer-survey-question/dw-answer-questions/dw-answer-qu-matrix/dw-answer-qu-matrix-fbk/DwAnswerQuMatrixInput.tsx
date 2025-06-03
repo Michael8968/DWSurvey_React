@@ -19,14 +19,14 @@ interface DwAnswerQuMatrixInputProps {
   index?: number;
   survey: Survey;
   answer?: Answer;
-  'onUpdate-survey'?: (updatedSurvey: Survey) => void;
+  onUpdateSurvey?: (updatedSurvey: Survey) => void;
 }
 
 const DwAnswerQuMatrixInput: React.FC<DwAnswerQuMatrixInputProps> = ({
   index = 0,
   survey,
   answer,
-  'onUpdate-survey': onUpdateSurvey
+  onUpdateSurvey
 }) => {
   const handleSurveyChange = (updatedSurvey: Survey) => {
     if (onUpdateSurvey) {

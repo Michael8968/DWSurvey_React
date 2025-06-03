@@ -129,7 +129,7 @@ const DwDesignTopBottomLayout: React.FC<Props> = ({ value: survey, onChange }) =
       <div className="dw-design-container">
         <Layout>
           <Header className="header" style={{ backgroundColor: 'var(--dw-primary-bg-color)' }}>
-            <DwDesignHeader value={survey} onChange={onChange} />
+            <DwDesignHeader survey={survey as any} />
           </Header>
           <Content style={{ padding: 0 }}>
             <div style={{ minHeight: 600 }}>
@@ -143,8 +143,7 @@ const DwDesignTopBottomLayout: React.FC<Props> = ({ value: survey, onChange }) =
                   }}
                 >
                   <DwDesignToolbar
-                    value={survey}
-                    onChange={onChange}
+                    survey={survey as any}
                     onStartDrag={onStartToolbar}
                     onEndDrag={onEnd}
                   />
@@ -162,17 +161,14 @@ const DwDesignTopBottomLayout: React.FC<Props> = ({ value: survey, onChange }) =
                           className="dw-container-body-center-left dw-container-body-lr"
                         >
                           <DwDesignContainerBodyLeft
-                            value={survey}
-                            onChange={onChange}
+                            survey={survey as any}
                             lrContentHeight={lrContentHeight}
                           />
                         </div>
                       </Col>
                       <Col span={16}>
                         <DwDesignContainerBodyCenter
-                          ref={designContainerBodyRef}
-                          value={survey}
-                          onChange={onChange}
+                          survey={survey as any}
                           onStartDragContainer={onStartDragContainer}
                           onEndDrag={onEnd}
                         />
@@ -186,8 +182,7 @@ const DwDesignTopBottomLayout: React.FC<Props> = ({ value: survey, onChange }) =
                           className="dw-container-body-center-right dw-container-body-lr"
                         >
                           <DwDesignContainerBodyRight
-                            value={survey}
-                            onChange={onChange}
+                            survey={survey as any}
                             lrContentHeight={lrContentHeight}
                             onStartDragRight={onStartRight}
                             onEndDrag={onEnd}

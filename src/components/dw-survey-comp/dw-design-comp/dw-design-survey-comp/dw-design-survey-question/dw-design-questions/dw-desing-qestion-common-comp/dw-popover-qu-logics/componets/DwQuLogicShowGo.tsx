@@ -1,7 +1,9 @@
 import React from 'react';
-import { Select, Option, InputNumber, Button, Empty } from 'element-react';
+import { Select, InputNumber, Button, Empty } from 'antd';
 import { v4 as uuidV4 } from 'uuid';
-import { logicNum, curQuAfterQus, getQuOptions } from '../../../../../../dw-utils/dw-survey-design';
+import { logicNum, curQuAfterQus, getQuOptions } from '../../../../../../../dw-utils/dw-survey-design';
+
+const Option = Select.Option;
 
 interface QuestionLogic {
   dwId: string;
@@ -94,14 +96,16 @@ const DwQuLogicShowGo: React.FC<Props> = ({ value, index, logicType, onChange })
                       value={item.cgQuItemId || []}
                       placeholder="请选择本题选项"
                       style={{ width: 130 }}
-                      size="mini"
-                      multiple
+                      size="small"
+                      mode="multiple"
                       onChange={(val: string[] | string) => handleChange(survey => {
                         survey.questions[index].questionLogics[itemOptionIndex].cgQuItemId = val;
                       })}
                     >
                       {options.map((option: OptionObj, optionIndex: number) => (
-                        <Option key={`quOption_${optionIndex}`} value={option.dwId} label={option.optionTitleObj.dwText} />
+                        <Option key={`quOption_${optionIndex}`} value={option.dwId}>
+                          {option.optionTitleObj.dwText}
+                        </Option>
                       ))}
                     </Select>
                     {question.quType === 'ORDERQU' && (
@@ -111,23 +115,23 @@ const DwQuLogicShowGo: React.FC<Props> = ({ value, index, logicType, onChange })
                           value={item.geLe}
                           placeholder="请选择关系"
                           style={{ width: 70 }}
-                          size="mini"
+                          size="small"
                           onChange={(val: string) => handleChange(survey => {
                             survey.questions[index].questionLogics[itemOptionIndex].geLe = val;
                           })}
                         >
-                          <Option value="LTE" label="小于等于" />
-                          <Option value="GTE" label="大于等于" />
-                          <Option value="LT" label="小于" />
-                          <Option value="GT" label="大于" />
+                          <Option value="LTE">小于等于</Option>
+                          <Option value="GTE">大于等于</Option>
+                          <Option value="LT">小于</Option>
+                          <Option value="GT">大于</Option>
                         </Select>
                         <InputNumber
                           value={item.scoreNum}
                           controls={false}
-                          size="mini"
+                          size="small"
                           style={{ width: 60 }}
-                          onChange={(val: number) => handleChange(survey => {
-                            survey.questions[index].questionLogics[itemOptionIndex].scoreNum = val;
+                          onChange={(val) => handleChange(survey => {
+                            survey.questions[index].questionLogics[itemOptionIndex].scoreNum = val || 0;
                           })}
                         />
                         名，
@@ -140,23 +144,23 @@ const DwQuLogicShowGo: React.FC<Props> = ({ value, index, logicType, onChange })
                           value={item.geLe}
                           placeholder="请选择关系"
                           style={{ width: 70 }}
-                          size="mini"
+                          size="small"
                           onChange={(val: string) => handleChange(survey => {
                             survey.questions[index].questionLogics[itemOptionIndex].geLe = val;
                           })}
                         >
-                          <Option value="LTE" label="小于等于" />
-                          <Option value="GTE" label="大于等于" />
-                          <Option value="LT" label="小于" />
-                          <Option value="GT" label="大于" />
+                          <Option value="LTE">小于等于</Option>
+                          <Option value="GTE">大于等于</Option>
+                          <Option value="LT">小于</Option>
+                          <Option value="GT">大于</Option>
                         </Select>
                         <InputNumber
                           value={item.scoreNum}
                           controls={false}
-                          size="mini"
+                          size="small"
                           style={{ width: 60 }}
-                          onChange={(val: number) => handleChange(survey => {
-                            survey.questions[index].questionLogics[itemOptionIndex].scoreNum = val;
+                          onChange={(val) => handleChange(survey => {
+                            survey.questions[index].questionLogics[itemOptionIndex].scoreNum = val || 0;
                           })}
                         />
                         分，
@@ -170,21 +174,23 @@ const DwQuLogicShowGo: React.FC<Props> = ({ value, index, logicType, onChange })
                 {item.logicType === 'SHOW' && <span>则显示</span>}
                 <Select
                   value={item.skQuId || (logicType === 'SHOW' ? [] : '')}
-                  multiple={logicType === 'SHOW'}
+                  mode={logicType === 'SHOW' ? 'multiple' : 'tags'}
                   placeholder="请选择题目"
                   style={{ width: 130 }}
-                  size="mini"
+                  size="small"
                   onChange={(val: string[] | string) => handleChange(survey => {
                     survey.questions[index].questionLogics[itemOptionIndex].skQuId = val;
                   })}
                 >
                   {questions.map((q: Question, questionIndex: number) => (
-                    <Option key={`question_${questionIndex}`} value={q.dwId} label={`Q${q.quNum}、${q.quTitleObj.dwText}`} />
+                    <Option key={`question_${questionIndex}`} value={q.dwId}>
+                      {`Q${q.quNum}、${q.quTitleObj.dwText}`}
+                    </Option>
                   ))}
                 </Select>
                 <Button
                   icon="el-icon-delete"
-                  size="mini"
+                  size="small"
                   style={{ marginLeft: 10 }}
                   onClick={() => deleteQuLogic(itemOptionIndex)}
                 />
@@ -192,14 +198,14 @@ const DwQuLogicShowGo: React.FC<Props> = ({ value, index, logicType, onChange })
             </div>
           ))
         ) : (
-          <Empty imageSize={30} description="暂无相关逻辑数据">
-            <Button type="primary" size="small" plain icon="el-icon-plus" onClick={addQuLogic}>
+          <Empty description="暂无相关逻辑数据">
+            <Button type="primary" size="small" icon="el-icon-plus" onClick={addQuLogic}>
               新增逻辑
             </Button>
           </Empty>
         )}
         <div style={{ marginTop: 10 }}>
-          <Button type="primary" size="small" plain icon="el-icon-plus" onClick={addQuLogic}>
+          <Button type="primary" size="small" icon="el-icon-plus" onClick={addQuLogic}>
             新增逻辑
           </Button>
         </div>

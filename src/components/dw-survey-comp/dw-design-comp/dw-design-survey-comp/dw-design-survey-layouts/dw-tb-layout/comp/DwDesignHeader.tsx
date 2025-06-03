@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, Dropdown, message } from 'antd';
 import { Link, useParams, useLocation } from 'react-router-dom';
 import { dwFooterUtils } from '../../../../../dw-utils/dw-common/dw-footer-util';
-import { getSurveyTypeName } from '../../../../../dw-utils/dw-survey-common';
+// import { getSurveyTypeName } from '../../../../../dw-utils/dw-survey-common';
 
 interface Survey {
   surveyNameObj: {
@@ -36,9 +36,9 @@ const DwDesignHeader: React.FC<Props> = ({ survey }) => {
         () => setLogoTitleNote('拖动或点击控件即可加入新题目')
       );
       // 左右布局
-      dwFooterUtils.isLayoutLr(() => setPrevPath('/v6/lr'));
+      dwFooterUtils.isLayoutLr((footerInfo: any) => setPrevPath(footerInfo.prevPath), () => setPrevPath('/v6/lr'));
     });
-    getSurveyTypeName(survey);
+    // getSurveyTypeName(survey);
     setLogoTitle(`调问网-全新${survey.surveyTypeSimpleName}编辑器`);
   };
 

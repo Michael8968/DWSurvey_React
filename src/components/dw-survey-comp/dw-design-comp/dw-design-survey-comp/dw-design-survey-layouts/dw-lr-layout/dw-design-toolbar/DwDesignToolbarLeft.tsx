@@ -98,7 +98,7 @@ const DwDesignToolbarLeft: React.FC<Props> = ({ survey, onStartDrag, onEndDrag }
 
   const startIntervalSaveSurvey = () => {
     const intervalId = setInterval(() => {
-      saveSurveyFun(null);
+      saveSurveyFun(() => {});
       setAutoSaveTime(20);
     }, 20000);
 
@@ -181,7 +181,7 @@ const DwDesignToolbarLeft: React.FC<Props> = ({ survey, onStartDrag, onEndDrag }
                                           className="dw-list-group-item"
                                           onClick={() => clickToolbarItem(quItem)}
                                         >
-                                          <DwDesignQuBankQuestion item={quItem} />
+                                          <DwDesignQuBankQuestion item={quItem as any} />
                                         </div>
                                       )}
                                     </Draggable>

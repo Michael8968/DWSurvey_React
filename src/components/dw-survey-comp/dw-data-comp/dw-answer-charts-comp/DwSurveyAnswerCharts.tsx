@@ -71,9 +71,9 @@ const DwSurveyAnswerCharts: React.FC = () => {
         if (resultCode === 200) {
           setSurveyAggStats(responseResult.data);
           // 加工统计数据
-          dwAnswerChart.chartDataParse(updatedSurvey, responseResult.data);
+          dwAnswerChart.chartDataParse(updatedSurvey as any, responseResult.data);
           // 生成统计报表数据
-          dwAnswerChart.anCountStats(updatedSurvey.questions);
+          dwAnswerChart.anCountStats(updatedSurvey.questions as any);
           setQuestions(updatedSurvey.questions);
         } else {
           setResultMsg('统计服务不可用，可能是Es服务没有启用！');
@@ -93,9 +93,8 @@ const DwSurveyAnswerCharts: React.FC = () => {
         {questions.map((item, index) => (
           <DwSurveyChartsCommon
             key={item.id}
-            id={item.id}
             index={index}
-            question={item}
+            question={item as any}
           />
         ))}
         {resultMsg && (

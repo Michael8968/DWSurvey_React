@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Popover, Tabs, TabPane, Badge, Message } from 'element-react';
-import DwQuLogicShowGo from './dw-popover-qu-logics/componets/DwQuLogicShowGo';
-import { logicNum } from '../../../../dw-utils/dw-survey-design';
+import { Popover, Tabs, Badge, message as Message } from 'antd';
+import DwQuLogicShowGo from './componets/DwQuLogicShowGo';
+import { logicNum } from '../../../../../../dw-utils/dw-survey-design';
 import './DwPopoverQuLogics.scss';
+
+const TabPane = Tabs.TabPane;
 
 interface QuFocusObj {
   quLogicShow: boolean;
@@ -87,11 +89,7 @@ const DwPopoverQuLogics: React.FC<Props> = ({
         }
       });
       if (!checkQuLogic && isShowMsg) {
-        Message({
-          message: '提醒，如果增加了逻辑配置项，请确认每个配置项都有合适的值！',
-          customClass: 'dw-msg-waring',
-          iconClass: 'el-icon-info',
-        });
+        Message.warning('提醒，如果增加了逻辑配置项，请确认每个配置项都有合适的值！');
         clickShowPopoverEvent();
       }
     }
@@ -104,12 +102,10 @@ const DwPopoverQuLogics: React.FC<Props> = ({
 
   return (
     <Popover
-      value={question.quFocusObj.quLogicShow}
-      trigger="manual"
-      placement="right-start"
-      width={700}
-      popperClass="dw-qu-set-popper"
-      onShow={showPopoverLoad}
+      open={question.quFocusObj.quLogicShow}
+      trigger="click"
+      placement="rightTop"
+      onOpenChange={showPopoverLoad}
     >
       <div>
         <Tabs activeName={activeName} onTabClick={setActiveName} beforeLeave={beforeLeave}>
@@ -117,7 +113,7 @@ const DwPopoverQuLogics: React.FC<Props> = ({
             label={
               <span>
                 显示逻辑&nbsp;
-                <Badge value={logicNumShow} hidden={logicNumShow <= 0} className="mark" />
+                <Badge count={logicNumShow} hidden={logicNumShow <= 0} className="mark" />
               </span>
             }
             name="logicShowTab"
@@ -128,7 +124,7 @@ const DwPopoverQuLogics: React.FC<Props> = ({
             label={
               <span>
                 跳转逻辑&nbsp;
-                <Badge value={logicNumGo} hidden={logicNumGo <= 0} className="mark" />
+                <Badge count={logicNumGo} />
               </span>
             }
             name="logicGoTab"

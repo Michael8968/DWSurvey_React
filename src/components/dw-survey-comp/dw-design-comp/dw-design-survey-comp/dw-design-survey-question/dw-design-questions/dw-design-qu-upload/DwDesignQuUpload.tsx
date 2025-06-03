@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Upload, Button, Message, MessageBox } from 'element-react';
+import { Upload, Button, message as Message, Modal as MessageBox } from 'antd';
+import type { UploadFile } from 'antd/es/upload/interface';
 
 interface Survey {
   [key: string]: any;
@@ -11,27 +12,31 @@ interface Props {
   onChange?: (survey: Survey) => void;
 }
 
-const DwDesignQuUpload: React.FC<Props> = ({
-  index,
-  survey,
-  onChange
-}) => {
-  const [fileList, setFileList] = useState<any[]>([]);
+const DwDesignQuUpload: React.FC<Props> = () => {
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
 
-  const handleRemove = (file: any, fileList: any[]) => {
-    console.log(file, fileList);
+  const handleRemove = async (file: UploadFile) => {
+    try {
+      await MessageBox.confirm({
+        title: '提示',
+        content: `确定移除 ${file.name}？`
+      });
+      return true;
+    } catch {
+      return false;
+    }
   };
 
-  const handlePreview = (file: any) => {
+  const handlePreview = (file: UploadFile) => {
     console.log(file);
   };
 
-  const handleExceed = (files: any[], fileList: any[]) => {
-    Message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
-  };
-
-  const beforeRemove = (file: any, fileList: any[]) => {
-    return MessageBox.confirm(`确定移除 ${file.name}？`);
+  const handleChange = ({ fileList: newFileList }: { fileList: UploadFile[] }) => {
+    if (newFileList.length > 3) {
+      Message.warning(`当前限制选择 3 个文件，已选择 ${newFileList.length} 个文件`);
+      return;
+    }
+    setFileList(newFileList);
   };
 
   return (
@@ -39,9 +44,8 @@ const DwDesignQuUpload: React.FC<Props> = ({
       <Upload
         onPreview={handlePreview}
         onRemove={handleRemove}
-        beforeRemove={beforeRemove}
-        limit={3}
-        onExceed={handleExceed}
+        maxCount={3}
+        onChange={handleChange}
         fileList={fileList}
         className="upload-demo"
         action="https://jsonplaceholder.typicode.com/posts/"

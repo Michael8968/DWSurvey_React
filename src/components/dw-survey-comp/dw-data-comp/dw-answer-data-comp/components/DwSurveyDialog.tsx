@@ -86,7 +86,7 @@ const DwSurveyDialog = forwardRef<DwSurveyDialogRef, Props>((_, ref) => {
             ）上随时抛问题、提需求，我们会认真对待每一个社区上的留言。
             我们的开源之路，离不开您的鼓励 💪，感谢您在开源社区为我们
             <Popover
-              placement="top-start"
+              placement="topLeft"
               trigger="hover"
               content={<img src={image03} width={330} alt="Star" />}
             >

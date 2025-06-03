@@ -24,12 +24,15 @@ interface DwAnswerQuestionCommonProps {
     themeColor?: string;
   };
   survey: any;
+  answer: any;
   onSurveyChange?: (survey: any) => void;
+  children?: React.ReactNode;
 }
 
 const DwAnswerQuestionCommon: React.FC<DwAnswerQuestionCommonProps> = ({
   index,
   options = { themeColor: 'red' },
+  answer,
   survey,
   onSurveyChange
 }) => {

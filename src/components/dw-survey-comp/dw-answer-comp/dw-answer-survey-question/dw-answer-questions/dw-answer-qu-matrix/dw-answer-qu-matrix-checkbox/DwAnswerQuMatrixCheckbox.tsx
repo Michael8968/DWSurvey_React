@@ -17,11 +17,11 @@ interface DwAnswerQuMatrixCheckboxProps {
   index?: number;
   survey: Survey;
   answer?: Answer;
-  'onUpdate-survey'?: (survey: Survey) => void;
+  onUpdateSurvey?: (survey: Survey) => void;
 }
 
 const DwAnswerQuMatrixCheckbox: React.FC<DwAnswerQuMatrixCheckboxProps> = (props) => {
-  const { index = 0, survey, answer, 'onUpdate-survey': onUpdateSurvey } = props;
+  const { index = 0, survey, answer, onUpdateSurvey } = props;
 
   const handleChange = (updatedSurvey: Survey) => {
     if (onUpdateSurvey) {

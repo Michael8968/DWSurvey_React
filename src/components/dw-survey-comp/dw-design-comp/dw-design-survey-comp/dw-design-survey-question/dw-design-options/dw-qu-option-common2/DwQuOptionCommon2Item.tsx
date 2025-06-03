@@ -1,7 +1,7 @@
 import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react';
-import { Badge, Input, Rate, Tooltip } from 'element-react';
+import { Badge, Input, Rate, Tooltip } from 'antd';
 import { v4 as uuidV4 } from 'uuid';
-import { parseQuOptionType1Item } from '../../../../../../dw-utils/dw-survey-parse';
+import { parseQuOptionType1Item } from '../../../../../dw-utils/dw-survey-parse';
 import DwTextEditLabel from '../../../dw-design-survey-common/DwTextEditLabel';
 
 interface OptionTitleObj {
@@ -65,7 +65,7 @@ const DwQuOptionCommon2Item = forwardRef<any, Props>((props, ref) => {
         dwEditLabelRef.current.upEditorText(value[optionIndex].optionTitleObj.dwHtml);
         if (focusIndex !== null && optionIndex === focusIndex) {
           upItemClick(true);
-          editFocus();
+          // editFocus();
         }
       }
     },
@@ -132,9 +132,9 @@ const DwQuOptionCommon2Item = forwardRef<any, Props>((props, ref) => {
           <div className="dw-qu-item-el-checkbox-radio">
             <Badge
               hidden={!showScoreBadge}
-              value={`${value[optionIndex].scoreNum}分`}
+              count={`${value[optionIndex].scoreNum}分`}
               className="dw-el-badge-option-score"
-              type="warning"
+              color="warning"
             >
               {quType === 'RADIO' && <i className="dw-qu-item-el-checkbox-radio-icon far fa-circle" />}
               {quType === 'CHECKBOX' && <i className="dw-qu-item-el-checkbox-radio-icon far fa-square" />}
@@ -149,17 +149,17 @@ const DwQuOptionCommon2Item = forwardRef<any, Props>((props, ref) => {
           </div>
           {(itemStatus.itemHover || itemStatus.itemClick) && (
             <div className="dw-qu-item-toolbar dw-display-flex-right">
-              <Tooltip content="排序选项" placement="top">
+              <Tooltip title="排序选项" placement="top">
                 <div className="dw-question-toolbar dw-margin-right-10">
                   <i className="dwMoveSortQuOption dw-cursor-pointer dw-event-color el-icon-rank" />
                 </div>
               </Tooltip>
-              <Tooltip content="在后添加选项" placement="top">
+              <Tooltip title="在后添加选项" placement="top">
                 <div className="dw-question-toolbar dw-margin-right-10" onClick={addOptionBefore}>
                   <i className="dw-cursor-pointer dw-event-color el-icon-circle-plus-outline" />
                 </div>
               </Tooltip>
-              <Tooltip content="删除当前选项" placement="top">
+              <Tooltip title="删除当前选项" placement="top">
                 <div className="dw-question-toolbar dw-margin-right-10" onClick={deleteOption}>
                   <i className="dw-cursor-pointer dw-event-color el-icon-remove-outline" />
                 </div>
@@ -168,24 +168,23 @@ const DwQuOptionCommon2Item = forwardRef<any, Props>((props, ref) => {
           )}
         </div>
         {(quType === 'MULTIFILLBLANK' || ((quType === 'RADIO' || quType === 'CHECKBOX') && value[optionIndex].showOptionNote)) && (
-          value[optionIndex].answerInputRow > 1 ? (
+          value[optionIndex].answerInputRow && value[optionIndex].answerInputRow > 1 ? (
             <Input
               type="textarea"
               value={inputText}
               placeholder={value[optionIndex].inputAttr?.commonAttr.placeholder}
-              autosize={{ minRows: value[optionIndex].inputAttr?.commonAttr.inputRow }}
-              onChange={(val) => setInputText(val)}
+              onChange={(e) => setInputText(e.target.value)}
             />
           ) : (
             <Input
               value={inputText}
               placeholder={value[optionIndex].inputAttr?.commonAttr.placeholder}
-              onChange={(val) => setInputText(val)}
+              onChange={(e) => setInputText(e.target.value)}
             />
           )
         )}
         {quType === 'SCORE' && (
-          <Rate max={survey.questions[quIndex].paramInt02} />
+          <Rate count={survey.questions[quIndex].paramInt02} />
         )}
       </div>
     </div>

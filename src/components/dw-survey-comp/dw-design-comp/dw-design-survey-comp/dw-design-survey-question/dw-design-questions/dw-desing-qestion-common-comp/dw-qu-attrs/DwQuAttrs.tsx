@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
-import { Form, FormItem, RadioGroup, Radio, Select, Option, InputNumber, Input } from 'element-react';
+import { Form, Radio, Select, InputNumber, Input } from 'antd';
+import type { RadioChangeEvent } from 'antd';
 import DwInputProps from '../DwInputProps';
+
+const FormItem = Form.Item;
+const RadioGroup = Radio.Group;
+const Option = Select.Option;
 
 interface QuAttr {
   isRequired: boolean;
@@ -77,9 +82,9 @@ const DwQuAttrs: React.FC<Props> = ({
               survey.questions[index].hv = val;
             })}
           >
-            <Option value={1} label="横向" />
-            <Option value={2} label="竖向" />
-            <Option value={4} label="下拉" />
+            <Option value={1}>横向</Option>
+            <Option value={2}>竖向</Option>
+            <Option value={4}>下拉</Option>
           </Select>
         </FormItem>
         {question.hv === 1 && (
@@ -88,8 +93,10 @@ const DwQuAttrs: React.FC<Props> = ({
               <InputNumber
                 value={question.cellCount}
                 style={{ marginRight: 10 }}
-                onChange={(val: number) => handleChange(survey => {
-                  survey.questions[index].cellCount = val;
+                onChange={(val: number | null) => handleChange(survey => {
+                  if (val !== null) {
+                    survey.questions[index].cellCount = val;
+                  }
                 })}
               />
               列
@@ -103,8 +110,10 @@ const DwQuAttrs: React.FC<Props> = ({
               <InputNumber
                 value={question.minLimit}
                 style={{ marginRight: 10 }}
-                onChange={(val: number) => handleChange(survey => {
-                  survey.questions[index].minLimit = val;
+                onChange={(val: number | null) => handleChange(survey => {
+                  if (val !== null) {
+                    survey.questions[index].minLimit = val;
+                  }
                 })}
               />
             </div>
@@ -112,8 +121,10 @@ const DwQuAttrs: React.FC<Props> = ({
               最多
               <InputNumber
                 value={question.maxLimit}
-                onChange={(val: number) => handleChange(survey => {
-                  survey.questions[index].maxLimit = val;
+                onChange={(val: number | null) => handleChange(survey => {
+                  if (val !== null) {
+                    survey.questions[index].maxLimit = val;
+                  }
                 })}
               />
             </div>
@@ -131,9 +142,10 @@ const DwQuAttrs: React.FC<Props> = ({
                 {options?.map((item, optionIndex) => (
                   <Option
                     key={`quOption_${optionIndex}`}
-                    label={item.optionTitleObj.dwText}
                     value={optionIndex}
-                  />
+                  >
+                    {item.optionTitleObj.dwText}
+                  </Option>
                 ))}
               </Select>
             </FormItem>
@@ -143,16 +155,16 @@ const DwQuAttrs: React.FC<Props> = ({
               <FormItem label="选项说明">
                 <RadioGroup
                   value={selectedOption.showOptionNote}
-                  onChange={(val: number) => handleChange(survey => {
+                  onChange={(e: RadioChangeEvent) => handleChange(survey => {
                     if (question.quType === 'RADIO') {
-                      survey.questions[index].quRadios![selectOptionIndex].showOptionNote = val;
+                      survey.questions[index].quRadios![selectOptionIndex].showOptionNote = e.target.value;
                     } else {
-                      survey.questions[index].quCheckboxs![selectOptionIndex].showOptionNote = val;
+                      survey.questions[index].quCheckboxs![selectOptionIndex].showOptionNote = e.target.value;
                     }
                   })}
                 >
-                  <Radio label={1}>显示</Radio>
-                  <Radio label={0}>不显示</Radio>
+                  <Radio value={1}>显示</Radio>
+                  <Radio value={0}>不显示</Radio>
                 </RadioGroup>
               </FormItem>
               {selectedOption.showOptionNote === 1 && (
@@ -182,15 +194,19 @@ const DwQuAttrs: React.FC<Props> = ({
       <InputNumber
         value={question.paramInt01}
         style={{ marginRight: 10 }}
-        onChange={(val: number) => handleChange(survey => {
-          survey.questions[index].paramInt01 = val;
+        onChange={(val: number | null) => handleChange(survey => {
+          if (val !== null) {
+            survey.questions[index].paramInt01 = val;
+          }
         })}
       />
       到
       <InputNumber
         value={question.paramInt02}
-        onChange={(val: number) => handleChange(survey => {
-          survey.questions[index].paramInt02 = val;
+        onChange={(val: number | null) => handleChange(survey => {
+          if (val !== null) {
+            survey.questions[index].paramInt02 = val;
+          }
         })}
       />
     </FormItem>
@@ -205,8 +221,10 @@ const DwQuAttrs: React.FC<Props> = ({
           <InputNumber
             value={question.paramInt01}
             style={{ marginRight: 10 }}
-            onChange={(val: number) => handleChange(survey => {
-              survey.questions[index].paramInt01 = val;
+            onChange={(val: number | null) => handleChange(survey => {
+              if (val !== null) {
+                survey.questions[index].paramInt01 = val;
+              }
             })}
           />
           项
@@ -223,9 +241,10 @@ const DwQuAttrs: React.FC<Props> = ({
                 {question.quMultiFillblanks?.map((item, optionIndex) => (
                   <Option
                     key={`quMFbk${optionIndex}`}
-                    label={item.optionTitleObj.dwText}
                     value={optionIndex}
-                  />
+                  >
+                    {item.optionTitleObj.dwText}
+                  </Option>
                 ))}
               </Select>
               的属性规则如下
@@ -259,17 +278,17 @@ const DwQuAttrs: React.FC<Props> = ({
             survey.questions[index].fileAccept = val;
           })}
         >
-          <Option value={0} label="不限" />
-          <Option value={1} label="图片(.jpg,.jpeg,.png,.gif,.bmp)" />
-          <Option value={2} label="文档(.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx)" />
-          <Option value={100} label="自定义" />
+          <Option value={0}>不限</Option>
+          <Option value={1}>图片(.jpg,.jpeg,.png,.gif,.bmp)</Option>
+          <Option value={2}>文档(.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx)</Option>
+          <Option value={100}>自定义</Option>
         </Select>
         {question.fileAccept === 100 && (
           <Input
             value={question.customFileAccept}
             style={{ width: 160 }}
-            onChange={(val: string) => handleChange(survey => {
-              survey.questions[index].customFileAccept = val;
+            onChange={(e) => handleChange(survey => {
+              survey.questions[index].customFileAccept = e.target.value;
             })}
           />
         )}
@@ -279,15 +298,19 @@ const DwQuAttrs: React.FC<Props> = ({
         <InputNumber
           value={question.fileLimit}
           style={{ marginRight: 15 }}
-          onChange={(val: number) => handleChange(survey => {
-            survey.questions[index].fileLimit = val;
+          onChange={(val: number | null) => handleChange(survey => {
+            if (val !== null) {
+              survey.questions[index].fileLimit = val;
+            }
           })}
         />
         单个文件最大支持
         <InputNumber
           value={question.fileSize}
-          onChange={(val: number) => handleChange(survey => {
-            survey.questions[index].fileSize = val;
+          onChange={(val: number | null) => handleChange(survey => {
+            if (val !== null) {
+              survey.questions[index].fileSize = val;
+            }
           })}
         />
         M
@@ -306,27 +329,27 @@ const DwQuAttrs: React.FC<Props> = ({
       </div>
       <div style={{ padding: 5 }}>
         <div style={{ minHeight: 50 }}>
-          <Form labelWidth={80} size="mini">
+          <Form size="small">
             <FormItem label="是否必答">
               <RadioGroup
                 value={question.quAttr.isRequired}
-                onChange={(val: boolean) => handleChange(survey => {
-                  survey.questions[index].quAttr.isRequired = val;
+                onChange={(e: RadioChangeEvent) => handleChange(survey => {
+                  survey.questions[index].quAttr.isRequired = e.target.value;
                 })}
               >
-                <Radio label={true}>是</Radio>
-                <Radio label={false}>否</Radio>
+                <Radio value={true}>是</Radio>
+                <Radio value={false}>否</Radio>
               </RadioGroup>
             </FormItem>
             <FormItem label="副标题">
               <RadioGroup
                 value={question.quAttr.showQuNote}
-                onChange={(val: boolean) => handleChange(survey => {
-                  survey.questions[index].quAttr.showQuNote = val;
+                onChange={(e: RadioChangeEvent) => handleChange(survey => {
+                  survey.questions[index].quAttr.showQuNote = e.target.value;
                 })}
               >
-                <Radio label={true}>显示</Radio>
-                <Radio label={false}>隐藏</Radio>
+                <Radio value={true}>显示</Radio>
+                <Radio value={false}>隐藏</Radio>
               </RadioGroup>
             </FormItem>
             {(question.quType === 'RADIO' || question.quType === 'CHECKBOX') && renderRadioCheckboxAttrs()}

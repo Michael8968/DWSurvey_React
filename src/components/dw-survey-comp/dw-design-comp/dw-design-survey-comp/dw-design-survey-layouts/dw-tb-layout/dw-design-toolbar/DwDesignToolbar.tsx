@@ -52,6 +52,7 @@ const DwDesignToolbar: React.FC<Props> = ({ survey, onStartDrag, onEndDrag }) =>
   const dwUpEntDialogRef = useRef<any>(null);
   const navigate = useNavigate();
   const { dwSurveyId } = useParams();
+  const [isOpenAddNewQuDialog, setIsOpenAddNewQuDialog] = useState(false);
 
   useEffect(() => {
     loadDesignSurveyData();
@@ -107,7 +108,7 @@ const DwDesignToolbar: React.FC<Props> = ({ survey, onStartDrag, onEndDrag }) =>
 
   const startIntervalSaveSurvey = () => {
     const intervalId = setInterval(() => {
-      saveSurveyFun(null);
+      saveSurveyFun(() => {});
       setAutoSaveTime(20);
     }, 20000);
 
@@ -126,7 +127,7 @@ const DwDesignToolbar: React.FC<Props> = ({ survey, onStartDrag, onEndDrag }) =>
   };
 
   const saveSurvey = () => {
-    saveSurveyFun(null);
+    saveSurveyFun(() => {});
   };
 
   const devSurvey = () => {
@@ -139,7 +140,7 @@ const DwDesignToolbar: React.FC<Props> = ({ survey, onStartDrag, onEndDrag }) =>
       previewSurvey();
       return false;
     } else if (activeKey === 'moreQus') {
-      dwUpEntDialogRef.current?.openDialog();
+      setIsOpenAddNewQuDialog(true);
       return false;
     }
     return true;
@@ -183,7 +184,6 @@ const DwDesignToolbar: React.FC<Props> = ({ survey, onStartDrag, onEndDrag }) =>
       activeKey={activeTab}
       onChange={clickDesignStyle}
       type="card"
-      loading={loading}
     >
       {tabs.map((tab, tabIndex) => (
         <TabPane tab={tab.tabName} key={`tabQu_${tabIndex}`}>
@@ -215,7 +215,7 @@ const DwDesignToolbar: React.FC<Props> = ({ survey, onStartDrag, onEndDrag }) =>
                                               className="toolbar-item"
                                               onClick={() => clickToolbarItem(quItem)}
                                             >
-                                              <DwDesignToolbarQuestion item={quItem} />
+                                              <DwDesignToolbarQuestion item={quItem as any} />
                                             </div>
                                           )}
                                         </Draggable>
@@ -236,7 +236,7 @@ const DwDesignToolbar: React.FC<Props> = ({ survey, onStartDrag, onEndDrag }) =>
                                   style={{ cursor: 'pointer' }}
                                   onClick={() => clickToolbarItem(quItem)}
                                 >
-                                  <DwDesignToolbarQuestion item={quItem} />
+                                  <DwDesignToolbarQuestion item={quItem as any} />
                                 </div>
                               ))}
                             </div>
@@ -273,7 +273,7 @@ const DwDesignToolbar: React.FC<Props> = ({ survey, onStartDrag, onEndDrag }) =>
         </TabPane>
       ))}
       <TabPane tab="更多题型" key="moreQus">
-        <DwUpEntDialog ref={dwUpEntDialogRef} />
+        {isOpenAddNewQuDialog && <DwUpEntDialog />}
       </TabPane>
     </Tabs>
   );

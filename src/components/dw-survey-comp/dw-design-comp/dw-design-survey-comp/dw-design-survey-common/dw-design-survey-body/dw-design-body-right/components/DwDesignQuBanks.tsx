@@ -27,7 +27,7 @@ interface Props {
 }
 
 const DwDesignQuBanks: React.FC<Props> = ({ survey, onStartDragRight, onEndDrag }) => {
-  const [activeKey, setActiveKey] = useState<string>('0');
+  const [activeKey, setActiveKey] = useState<string[]>(['0']);
   const [quBanks, setQuBanks] = useState<TabQu[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -63,8 +63,8 @@ const DwDesignQuBanks: React.FC<Props> = ({ survey, onStartDragRight, onEndDrag 
 
   return (
     <div>
-      <Collapse activeKey={activeKey} onChange={setActiveKey}>
-        {quBanks.map((item, index) => (
+      <Collapse activeKey={activeKey} onChange={(keys) => setActiveKey(keys as string[])}>
+        {quBanks.map((item: TabQu, index: number) => (
           <Panel header={item.tabQuName} key={index.toString()}>
             <div style={{ paddingBottom: '5px' }}>
               <Alert message="点击或拖动可加入到问卷中" type="info" showIcon />
@@ -88,7 +88,7 @@ const DwDesignQuBanks: React.FC<Props> = ({ survey, onStartDragRight, onEndDrag 
                                 {...provided.dragHandleProps}
                                 className="dw-list-group-item"
                               >
-                                <DwDesignQuBankQuestion item={question} />
+                                <DwDesignQuBankQuestion item={question as any} />
                               </div>
                             )}
                           </Draggable>

@@ -1,5 +1,5 @@
 import React, { useState, useRef, forwardRef, useImperativeHandle } from 'react';
-import { Badge, Input } from 'element-react';
+import { Badge, Input } from 'antd';
 import DwTextEditLabel from '../../../dw-design-survey-common/DwTextEditLabel';
 
 interface OptionTitleObj {
@@ -78,7 +78,7 @@ const DwQuOptionCommon1Item = forwardRef<DwQuOptionCommon1ItemRef, Props>(({
         dwEditLabelRef.current.upEditorText(options[optionIndex].optionTitleObj.dwHtml);
         if (focusIndex !== null && optionIndex === focusIndex) {
           upItemClick(true);
-          editFocus();
+          // editFocus();
         }
       }
     },
@@ -166,9 +166,9 @@ const DwQuOptionCommon1Item = forwardRef<DwQuOptionCommon1ItemRef, Props>(({
         <div className="dw-qu-item-el-checkbox-radio">
           <Badge
             hidden={!showScoreBadge}
-            value={`${options[optionIndex].scoreNum}分`}
+            count={`${options[optionIndex].scoreNum}分`}
             className="dw-el-badge-option-score"
-            type="warning"
+            color="warning"
           >
             {quType === 'RADIO' && (
               <i className="dw-qu-item-el-checkbox-radio-icon far fa-circle"></i>
@@ -182,22 +182,21 @@ const DwQuOptionCommon1Item = forwardRef<DwQuOptionCommon1ItemRef, Props>(({
             value={options[optionIndex].optionTitleObj}
             itemStatus={itemStatus}
             onUpItemClick={upItemClick}
-            onUpValue={upValue}
+            onUpValue={value => upValue(value as OptionTitleObj)}
           />
         </div>
-        {((quType === 'RADIO' || quType === 'CHECKBOX') && options[optionIndex].showOptionNote) && (
-          options[optionIndex].inputAttr?.commonAttr.inputRow > 1 ? (
+        {((quType === 'RADIO' || quType === 'CHECKBOX') && options?.[optionIndex]?.showOptionNote) && options[optionIndex].inputAttr?.commonAttr && (
+          options[optionIndex].inputAttr?.commonAttr?.inputRow > 1 ? (
             <Input
               type="textarea"
               value={inputText || ''}
-              onChange={(value) => setInputText(value)}
+              onChange={(e) => setInputText(e.target.value)}
               placeholder={options[optionIndex].inputAttr?.commonAttr.placeholder}
-              autosize={{ minRows: options[optionIndex].inputAttr?.commonAttr.inputRow }}
             />
           ) : (
             <Input
               value={inputText || ''}
-              onChange={(value) => setInputText(value)}
+              onChange={(e) => setInputText(e.target.value)}
               placeholder={options[optionIndex].inputAttr?.commonAttr.placeholder}
             />
           )

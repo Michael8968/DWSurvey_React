@@ -38,11 +38,11 @@ const DwDesignContainerBodyRight: React.FC<Props> = ({
             <div style={{ paddingBottom: '5px' }}>
               <Alert message="可以配置整个问卷的基本属性" type="info" showIcon />
             </div>
-            <DwDesignSurveyAttrs survey={survey} />
+            <DwDesignSurveyAttrs survey={survey as any} />
           </div>
         </TabPane>
         <TabPane tab="题目设置" key="quSet">
-          <DwQuAttrs survey={survey} index={survey.surveyFocusObj.focusQuIndex} />
+          <DwQuAttrs survey={survey as any} index={survey.surveyFocusObj.focusQuIndex} onChange={() => {}} />
         </TabPane>
       </Tabs>
     </div>

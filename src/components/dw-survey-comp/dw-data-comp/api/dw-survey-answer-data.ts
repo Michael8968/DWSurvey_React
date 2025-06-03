@@ -30,7 +30,7 @@ export function dwSurveyAnswerListV6(params: SurveyParams): Promise<AxiosRespons
  * @param params 查询参数
  * @returns Promise<AxiosResponse<ApiResponse>>
  */
-export function dwSurveyAnswerStatsV6(params: SurveyParams): Promise<AxiosResponse<ApiResponse>> {
+export function dwSurveyAnswerStatsV6(params: any): Promise<AxiosResponse<ApiResponse>> {
   return request({
     url: '/api/dwsurvey/app/v6/dw-answer-data-survey/survey-stats.do',
     method: 'get',
@@ -43,7 +43,7 @@ export function dwSurveyAnswerStatsV6(params: SurveyParams): Promise<AxiosRespon
  * @param params 导出参数
  * @returns Promise<AxiosResponse<ApiResponse>>
  */
-export function dwSurveyAnswerExportSync(params: SurveyParams): Promise<AxiosResponse<ApiResponse>> {
+export function dwSurveyAnswerExportSync(params: any): Promise<AxiosResponse<ApiResponse>> {
   return request({
     url: '/api/dwsurvey/app/v6/dw-answer-data-survey/export-by-sync.do',
     method: 'get',
@@ -56,7 +56,7 @@ export function dwSurveyAnswerExportSync(params: SurveyParams): Promise<AxiosRes
  * @param params 查询参数
  * @returns Promise<AxiosResponse<ApiResponse>>
  */
-export function dwSurveyAnswerExportLogInfo(params: SurveyParams): Promise<AxiosResponse<ApiResponse>> {
+export function dwSurveyAnswerExportLogInfo(params: any): Promise<AxiosResponse<ApiResponse>> {
   return request({
     url: '/api/dwsurvey/app/v6/answer/export-log/export-log-info.do',
     method: 'get',

@@ -6,8 +6,6 @@ import DwTextEditLabelCommon from '../DwTextEditLabelCommon';
 import DwDesignQuestion from '../../dw-design-survey-question/DwDesignQuestion';
 import DwAddNewQuDialog from '../../dw-design-survey-layouts/dw-tb-layout/dw-design-toolbar/components/DwAddNewQuDialog';
 import { dwResetQuestionRefreshValue } from '../../../../dw-utils/dw-survey-update-question';
-import { resetQuestion } from '../../../../dw-utils/dw-survey-parse';
-import { caleDesignSurveySumScore } from '../../../../dw-utils/dw-common/dw-survey-design-score';
 
 interface Survey {
   surveyAttrs?: {
@@ -93,10 +91,10 @@ const DwDesignContainerBodyCenter: React.FC<Props> = ({ survey, onStartDragConta
           </div>
         )}
         <div style={{ textAlign: 'center', padding: '20px' }}>
-          <DwTextEditLabelCommon value={survey.surveyNameObj} survey={survey} />
+          <DwTextEditLabelCommon value={survey.surveyNameObj} survey={survey as any} index={0} onUpdateInput={() => {}} />
         </div>
         <div style={{ padding: '0 40px' }}>
-          <DwTextEditLabelCommon value={survey.surveyDetail.surveyNodeObj} survey={survey} />
+          <DwTextEditLabelCommon value={survey.surveyDetail.surveyNodeObj} survey={survey as any} index={0} onUpdateInput={() => {}} />
         </div>
         <div style={{ marginTop: '10px' }}>
           <div>
@@ -133,7 +131,7 @@ const DwDesignContainerBodyCenter: React.FC<Props> = ({ survey, onStartDragConta
           </div>
         </div>
       </div>
-      <DwAddNewQuDialog ref={addNewQuDialogRef} survey={survey} />
+      <DwAddNewQuDialog ref={(ref: any) => (addNewQuDialogRef.current = ref)} survey={survey as any} />
     </div>
   );
 };

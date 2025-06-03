@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { Badge, Input } from 'element-react';
+import { Badge, Input } from 'antd';
 import DwRowOptionCommon1Item from './DwRowOptionCommon1Item';
 import './DwRowOptionCommon1.scss';
 
@@ -87,9 +87,8 @@ const DwRowOptionCommon1: React.FC<Props> = ({
         {quType === 'MATRIX_RADIO' && (
           <Badge
             hidden={!showScore}
-            value={`${option.scoreNum}分`}
             className="dw-el-badge-option-score"
-            type="warning"
+            color="warning"
           >
             <i className="dw-qu-item-el-checkbox-radio-icon far fa-circle"></i>
           </Badge>
@@ -97,9 +96,8 @@ const DwRowOptionCommon1: React.FC<Props> = ({
         {quType === 'MATRIX_CHECKBOX' && (
           <Badge
             hidden={!showScore}
-            value={`${option.scoreNum}分`}
             className="dw-el-badge-option-score"
-            type="warning"
+            color="warning"
           >
             <i className="dw-qu-item-el-checkbox-radio-icon far fa-square"></i>
           </Badge>
@@ -137,8 +135,8 @@ const DwRowOptionCommon1: React.FC<Props> = ({
                     }}>
                       <div style={{ paddingLeft: '10px' }}>
                         <DwRowOptionCommon1Item
-                          value={dragOptions}
-                          survey={survey}
+                          value={dragOptions as any}
+                          survey={survey as any}
                           quIndex={index}
                           optionIndex={rowOptionIndex}
                           quType={quType}
